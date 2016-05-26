@@ -1,0 +1,12 @@
+*.name
+*.xml
+.settings/org.eclipse.wst.jsdt.ui.superType.container
+*.prefs
+.settings/.jsdtscope
+*.project
+.buildpath
+/assets/
+/mail/
+/runtime/
+/tests/
+/vendor/
