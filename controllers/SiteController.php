@@ -12,7 +12,15 @@ class SiteController extends BaseController {
     public $layout = "main";
     
     public function actionIndex() {
-        return $this->render('index');
+        $res = Yii::$app->api->get('weixin/get-oauth-redirect');
+        header("Location:".$res['data']['authUrl']);
+        exit;
+//         return $this->render('index');
+    }
+    
+    public function actionJump() {
+        var_dump(Yii::$app->request->get());
+        exit;
     }
     
     public function actionLogin() {
