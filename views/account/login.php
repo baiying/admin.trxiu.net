@@ -9,7 +9,6 @@
 	<form class="form-vertical login-form" method="POST" action="">
 		<h3 class="form-title">登录</h3>
 		<div class="alert alert-error hide">
-			<button class="close" data-dismiss="alert"></button>
 			<span>请输入用户名和密码</span>
 		</div>
 		<div class="control-group">
@@ -35,7 +34,7 @@
 			<label class="checkbox">
 			<input type="checkbox" name="remember" value="1"/> 记住我
 			</label>
-			<button type="submit" class="btn green pull-right">
+			<button type="button" class="btn green pull-right button-login">
 			登录 <i class="m-icon-swapright m-icon-white"></i>
 			</button>            
 		</div>

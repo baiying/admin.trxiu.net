@@ -7,9 +7,8 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\helpers\Json;
-use app\models\Manager;
 
-class BaseController extends Controller {
+class NoauthBaseController extends Controller {
     // 设置布局文件
 	public $layout = "main";
 	// 关闭Post安全验证
@@ -24,8 +23,6 @@ class BaseController extends Controller {
 	public $errors = [];
     // 运行环境
     public $env = '';
-    // 管理员登录信息
-    public $manager = null;
 	
 	public function init() {
 	    // 根据应用名称判断当前是生产环境还是测试环境
@@ -33,13 +30,6 @@ class BaseController extends Controller {
 	        $this->env = 'test';
 	    } else {
 	        $this->env = 'product';
-	    }
-	    // 判断管理员是否登录
-	    $manager = new Manager();
-	    $this->manager = $manager->isLogin();
-	    if($this->manager == null) {
-	        header("Location:/account/login/");
-	        exit;
 	    }
     }
 	/**

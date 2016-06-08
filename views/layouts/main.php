@@ -62,13 +62,13 @@ use yii\helpers\Html;
                     <!-- BEGIN USER LOGIN DROPDOWN -->
                     <li class="dropdown user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img alt="" src="http://p.cheweixiu.net/p/others/default/thumb/login30.png" />
-                        <span class="username"><?php echo "测试";?></span>
+                        <span>你好，</span>
+                        <span class="username"><?php echo $this->context->manager->name;?></span>
                         <i class="icon-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/console/account/site/change-pwd/"><i class="icon-user"></i> 修改密码</a></li>
-                            <li><a href="/console/account/site/logout/"><i class="icon-key"></i> 退出</a></li>
+                            <li><a href="/site/change-pwd/"><i class="icon-user"></i> 修改密码</a></li>
+                            <li><a href="/site/logout/"><i class="icon-key"></i> 退出</a></li>
                         </ul>
                     </li>
                     <!-- END USER LOGIN DROPDOWN -->
@@ -105,10 +105,10 @@ use yii\helpers\Html;
                     </a>
                     <ul class="sub-menu">
                         <li class="">
-                            <a href="#">投票管理</a>
+                            <a href="/ballot/index/">投票管理</a>
                         </li>
                         <li class="">
-                            <a href="#">主播管理</a>
+                            <a href="/anchor/index/">主播管理</a>
                         </li>
                     </ul>
                 </li>
@@ -135,7 +135,7 @@ use yii\helpers\Html;
                     </a>
                     <ul class="sub-menu">
                         <li class="">
-                            <a href="#">账号管理</a>
+                            <a href="/system/manager/">账号管理</a>
                         </li>
                     </ul>
                 </li>
