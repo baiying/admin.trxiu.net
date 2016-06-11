@@ -19,6 +19,10 @@ class AccountController extends NoauthBaseController {
         $renderArgs = [];
         return $this->render('login', $renderArgs);
     }
+    
+    public function actionInfo() {
+        phpinfo();
+    }
     /**
      * Ajax请求处理
      */

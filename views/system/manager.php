@@ -60,7 +60,7 @@
                     <td><?php echo date("Y-m-d H:i:s", $item['login_time'])?></td>
                     <td><?php echo $item['status'] == 1 ? '有效' : '冻结'?></td>
                     <td>
-                        <button type="button" name="button-edit" class="btn green mini button-edit" data-manager-id="<?php echo $item['manager_id']?>" data-username="<?php echo $item['username']?>"><i class="icon-pencil"></i> 编辑</button>
+                        <button type="button" name="button-edit" class="btn green mini button-edit" data-manager-id="<?php echo $item['manager_id']?>" data-username="<?php echo $item['username']?>" data-mobile="<?php echo $item['mobile']?>" data-realname="<?php echo $item['real_name']?>"><i class="icon-pencil"></i> 编辑</button>
                         <?php if($item['status'] == 1):?>
                         <button type="button" name="button-lock" class="btn red mini button-lock"><i class="icon-lock"></i> 冻结</button>
                         <?php else:?>
@@ -96,7 +96,9 @@
 		<h3></h3>
 	</div>
 	<div class="modal-body form-horizontal">
-
+        <div class="alert alert-error hide">
+			<span></span>
+		</div>
 		<div class="control-group">
 			<label class="control-label">账号：</label>
 			<div class="controls">	
@@ -109,10 +111,22 @@
 				<input type="text" class="m-wrap password" placeholder="" value="" />
 			</div>
 		</div>
+		<div class="control-group">
+			<label class="control-label">手机号：</label>
+			<div class="controls">	
+				<input type="text" class="m-wrap mobile" placeholder="" value="" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">真实姓名：</label>
+			<div class="controls">	
+				<input type="text" class="m-wrap realname" placeholder="" value="" />
+			</div>
+		</div>
 
 	</div>
 	<div class="modal-footer">
-		<button type="button"  class="btn blue button-confirm">确定</button>
+		<button type="button"  class="btn blue button-confirm" data-loading-text="提交中...">确定</button>
 		<button type="button" data-dismiss="modal" class="btn">取消</button>
 		<input type="hidden" id="managerid" value="" />
 	</div>
