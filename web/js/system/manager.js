@@ -1,6 +1,36 @@
 /**
  * 账号管理页面JS脚本
  */
+
+$(".button-status").click(function() {
+	var status = $(this).attr('data-status');
+	var managerId = $(this).attr('data-manager-id');
+	if(status == "2") {
+		if(!confirm("冻结账号将导致该账号无法登录后台，确定要继续操作？")) {
+			return false;
+		}
+	} else {
+		if(!confirm("确定要解冻该账号？")) {
+			return false;
+		}
+	}
+	
+	$.ajax({
+		url: "/system/ajax/?act=changeStatus",
+		type: 'post',
+		dataType: 'json',
+		data: {managerid:managerId, status:status},
+		success: function(json) {
+			if(json.status = 'success') {
+				location.reload(true);
+				return true;
+			} else {
+				alert(json.message);
+				return false;
+			}
+		}
+	});
+});
 /**
  * 添加管理员按钮
  */
