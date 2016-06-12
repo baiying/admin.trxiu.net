@@ -14,26 +14,43 @@ $(".button-add").click(function() {
  */
 $(".button-edit").click(function() {
 	clearForm();
-	$(".username").val($(this).attr("data-username"));
-	$(".mobile").val($(this).attr("data-mobile"));
-	$(".realname").val($(this).attr("data-realname"));
-	$(".password").attr("placeholder", "如果不修改密码，则此处不要填写内容");
+	$(".manager-username").val($(this).attr("data-username"));
+	$(".manager-mobile").val($(this).attr("data-mobile"));
+	$(".manager-realname").val($(this).attr("data-realname"));
+	$(".manager-password").attr("placeholder", "如果不修改密码，则此处不要填写内容");
 	$("#managerid").val($(this).attr("data-manager-id"));
 	$("#editModal").find("h3").html('编辑管理员信息');
 	$("#editModal").modal('show');
 });
-
+/**
+ * 浮层提交按钮点击事件
+ */
 $(".button-confirm").click(function() {
 	var btn = $(this);
-	var username = $(".username").val();
-	var password = $(".password").val();
-	var managerid = $("#managerid").val();
-	var act = managerid > 0 ? 'edit' : 'create';
+	var user = {
+		username : $(".manager-username").val(),
+		password : $(".manager-password").val(),
+		mobile : $(".manager-mobile").val(),
+		real_name : $(".manager-realname").val(),
+		managerid : $("#managerid").val()
+	}
+	var act = user.managerid > 0 ? 'editManager' : 'createManager';
+	
+	if(user.username == "") {
+		$("#editModal").find(".alert-error").find("span").html("账号不能为空");
+		$("#editModal").find(".alert-error").show();
+		return false;
+	}
+	if(act == 'createManager' && user.password == "") {
+		$("#editModal").find(".alert-error").find("span").html("密码不能为空");
+		$("#editModal").find(".alert-error").show();
+		return false;
+	}
 	$.ajax({
 		url: "/system/ajax/?act="+act,
 		type: 'post',
 		dataType: 'json',
-		data: {username:username, password:password, managerid:managerid},
+		data: user,
 		beforeSend: function() {
 			btn.button('loading');
 		},
@@ -52,10 +69,10 @@ $(".button-confirm").click(function() {
 });
 
 function clearForm() {
-	$(".username").val('');
-	$(".password").val('');
-	$(".password").attr("placeholder", "");
-	$(".mobile").val('');
-	$(".realname").val('');
+	$(".manager-username").val('');
+	$(".manager-password").val('');
+	$(".manager-password").attr("placeholder", "");
+	$(".manager-mobile").val('');
+	$(".manager-realname").val('');
 	$("#managerid").val('0');
 }

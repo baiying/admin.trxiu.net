@@ -49,10 +49,12 @@ class SystemController extends BaseController {
         $act = Yii::$app->request->get('act');
         switch($act) {
             // 注册新的管理员账号
-            case 'create':
+            case 'createManager':
                 $rule = [
                     'username' => ['type'=>'string', 'required'=>true],
-                    'password' => ['type'=>'string', 'required'=>true]
+                    'password' => ['type'=>'string', 'required'=>true],
+                    'real_name'=> ['type'=>'string', 'default'=>''],
+                    'mobile'   => ['type'=>'string', 'default'=>''],
                 ];
                 $args = $this->getRequestData($rule, Yii::$app->request->post());
                 $res = Yii::$app->api->post('manager/register', $args);
@@ -64,11 +66,13 @@ class SystemController extends BaseController {
                 exit(Json::encode($json));
                 break;
             // 编辑已有的管理员账号
-            case 'edit':
+            case 'editManager':
                 $rule = [
                     'username' => ['type'=>'string', 'required'=>true],
                     'password' => ['type'=>'string', 'required'=>true],
-                    'managerid' => ['type'=>'int', 'required'=>true]
+                    'managerid' => ['type'=>'int', 'required'=>true],
+                    'real_name'=> ['type'=>'string', 'default'=>''],
+                    'mobile'   => ['type'=>'string', 'default'=>''],
                 ];
                 $args = $this->getRequestData($rule, Yii::$app->request->post());
                 $res = Yii::$app->api->post('manager/edit', $args);

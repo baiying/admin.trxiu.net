@@ -42,6 +42,8 @@
                         <input type="checkbox" class="group-checkable checkall" data-set="#sample_1 .checkboxes">
                     </th>
                     <th>账号</th>
+                    <th>真实姓名</th>
+                    <th>手机号码</th>
                     <th>创建时间</th>
                     <th>最后登录时间</th>
                     <th>状态</th>
@@ -56,6 +58,8 @@
                         <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['manager_id']?>" />
                     </td>
                     <td><?php echo $item['username']?></td>
+                    <td><?php echo $item['real_name']?></td>
+                    <td><?php echo $item['mobile']?></td>
                     <td><?php echo date("Y-m-d H:i:s", $item['create_time'])?></td>
                     <td><?php echo date("Y-m-d H:i:s", $item['login_time'])?></td>
                     <td><?php echo $item['status'] == 1 ? '有效' : '冻结'?></td>
@@ -102,25 +106,25 @@
 		<div class="control-group">
 			<label class="control-label">账号：</label>
 			<div class="controls">	
-                <input type="text" class="m-wrap username" placeholder="" value="" />
+                <input type="text" class="m-wrap manager-username" placeholder="" value="" />
 			</div>
 		</div>	
 		<div class="control-group">
 			<label class="control-label">密码：</label>
 			<div class="controls">	
-				<input type="text" class="m-wrap password" placeholder="" value="" />
+				<input type="text" class="m-wrap manager-password" placeholder="" value="" />
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">手机号：</label>
 			<div class="controls">	
-				<input type="text" class="m-wrap mobile" placeholder="" value="" />
+				<input type="text" class="m-wrap manager-mobile" placeholder="" value="" />
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">真实姓名：</label>
 			<div class="controls">	
-				<input type="text" class="m-wrap realname" placeholder="" value="" />
+				<input type="text" class="m-wrap manager-realname" placeholder="" value="" />
 			</div>
 		</div>
 
