@@ -83,6 +83,21 @@ class SystemController extends BaseController {
                 }
                 exit(Json::encode($json));
                 break;
+            // 修改管理员账号状态
+            case 'changeStatus':
+                $rule = [
+                    'managerid' => ['type'=>'int', 'required'=>true],
+                    'status' => ['type'=>'int', 'required'=>true],
+                ];
+                $args = $this->getRequestData($rule, Yii::$app->request->post());
+                $res = Yii::$app->api->post('manager/change-status', $args);
+                if($res['code'] == 200) {
+                    $json = ['status'=>'success', 'message'=>$res['message']];
+                } else {
+                    $json = ['status'=>'fail', 'message'=>$res['message']];
+                }
+                exit(Json::encode($json));
+                break;
         }
     }
     

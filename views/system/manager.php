@@ -66,9 +66,9 @@
                     <td>
                         <button type="button" name="button-edit" class="btn green mini button-edit" data-manager-id="<?php echo $item['manager_id']?>" data-username="<?php echo $item['username']?>" data-mobile="<?php echo $item['mobile']?>" data-realname="<?php echo $item['real_name']?>"><i class="icon-pencil"></i> 编辑</button>
                         <?php if($item['status'] == 1):?>
-                        <button type="button" name="button-lock" class="btn red mini button-lock"><i class="icon-lock"></i> 冻结</button>
+                        <button type="button" name="button-lock" class="btn red mini button-status" data-status="2" data-manager-id="<?php echo $item['manager_id']?>"><i class="icon-lock"></i> 冻结</button>
                         <?php else:?>
-                        <button type="button" name="button-unlock" class="btn blue mini button-unlock"><i class="icon-unlock"></i> 解冻</button>
+                        <button type="button" name="button-unlock" class="btn blue mini button-status" data-status="1" data-manager-id="<?php echo $item['manager_id']?>"><i class="icon-unlock"></i> 解冻</button>
                         <?php endif;?>
                     </td>
                 </tr>
