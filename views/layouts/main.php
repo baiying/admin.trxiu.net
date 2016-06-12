@@ -9,7 +9,7 @@ use yii\helpers\Html;
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>66汽配管理系统</title>
+    <title>唐人秀后台管理系统</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -91,7 +91,7 @@ use yii\helpers\Html;
                     <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
                 </li>
                 <li class="active">
-                    <a href="<?php echo $this->context->buildUrl("account/site");?>">
+<!--                    <a href="--><?php //echo $this->context->buildUrl("account/site");?><!--">-->
                     <i class="icon-home"></i> 
                     <span class="title">首页</span>
                     <span class="selected"></span>
