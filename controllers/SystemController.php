@@ -13,12 +13,13 @@ class SystemController extends BaseController {
     
     public function actionManager() {
         $this->js[] = "/js/system/manager.js";
+        $this->css[] = "/media/css/DT_bootstrap.css";
         
         $renderArgs = [];
         // 处理传入参数
         $rule = [
             'page'      => ['type'=>'int', 'default'=>1],
-            'pagesize'  => ['type'=>'int', 'default'=>20],
+            'pagesize'  => ['type'=>'int', 'default'=>2],
             'order'     => ['type'=>'string', 'default'=>'manager_id DESC']
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->get());
