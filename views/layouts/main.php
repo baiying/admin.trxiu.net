@@ -105,7 +105,10 @@ use yii\helpers\Html;
                     </a>
                     <ul class="sub-menu">
                         <li class="">
-                            <a href="/ballot/index/">投票管理</a>
+                            <a href="/ballot/index/">活动管理</a>
+                        </li>
+                        <li class="">
+                            <a href="/ballot/index/">活动主播管理</a>
                         </li>
                         <li class="">
                             <a href="/anchor/index/">主播管理</a>
