@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="row-fluid">
-        <button class="btn green button-add" ><i class="icon-plus"></i> 添加管理员</button>
+        <button class="btn green button-add" ><i class="icon-plus"></i> 添加主播</button>
     </div>
     <div class="tabbable tabbable-custom tabbable-custom-profile">
         <table class="table table-striped table-bordered table-hover dataTable">
@@ -41,35 +41,40 @@
                 <th width="25">
                     <input type="checkbox" class="group-checkable checkall" data-set="#sample_1 .checkboxes">
                 </th>
-                <th>账号</th>
-                <th>真实姓名</th>
-                <th>手机号码</th>
-                <th>创建时间</th>
+                <th>主播ID</th>
+                <th>主播昵称</th>
+                <th>主播头像</th>
+                <th>宣传底图</th>
+                <th>微信二维码名片</th>
+                <th>所属平台</th>
+                <th>直播间地址</th>
+                <th>主播描述</th>
+                <th>注册时间</th>
+                <th>信息更新时间</th>
                 <th>最后登录时间</th>
-                <th>状态</th>
                 <th class="span3">操作</th>
             </tr>
             </thead>
-            <?php if(!empty($managers)):?>
+            <?php if(!empty($anchor)):?>
                 <tbody>
-                <?php foreach($managers as $item):?>
+                <?php foreach($anchor as $item):?>
                     <tr>
                         <td>
-                            <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['manager_id']?>" />
+                            <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['anchor_id']?>" />
                         </td>
-                        <td><?php echo $item['username']?></td>
-                        <td><?php echo $item['real_name']?></td>
-                        <td><?php echo $item['mobile']?></td>
+                        <td><?php echo $item['anchor_name']?></td>
+                        <td><?php echo $item['thumb']?></td>
+                        <td><?php echo $item['backimage']?></td>
+                        <td><?php echo $item['create_time']?></td>
+                        <td><?php echo $item['qrcode']?></td>
+                        <td><?php echo $item['platform']?></td>
+                        <td><?php echo $item['broadcast']?></td>
+                        <td><?php echo $item['description']?></td>
                         <td><?php echo date("Y-m-d H:i:s", $item['create_time'])?></td>
-                        <td><?php echo date("Y-m-d H:i:s", $item['login_time'])?></td>
-                        <td><?php echo $item['status'] == 1 ? '有效' : '冻结'?></td>
+                        <td><?php echo date("Y-m-d H:i:s", $item['modify_time'])?></td>
+                        <td><?php echo $item['last_time']?></td>
                         <td>
-                            <button type="button" name="button-edit" class="btn green mini button-edit" data-manager-id="<?php echo $item['manager_id']?>" data-username="<?php echo $item['username']?>" data-mobile="<?php echo $item['mobile']?>" data-realname="<?php echo $item['real_name']?>"><i class="icon-pencil"></i> 编辑</button>
-                            <?php if($item['status'] == 1):?>
-                                <button type="button" name="button-lock" class="btn red mini button-status" data-status="2" data-manager-id="<?php echo $item['manager_id']?>"><i class="icon-lock"></i> 冻结</button>
-                            <?php else:?>
-                                <button type="button" name="button-unlock" class="btn blue mini button-status" data-status="1" data-manager-id="<?php echo $item['manager_id']?>"><i class="icon-unlock"></i> 解冻</button>
-                            <?php endif;?>
+                            <button type="button" name="button-edit" class="btn green mini button-edit" data-anchor-id="<?php echo $item['anchor_id']?>" data-anchor-name="<?php echo $item['anchor_name']?>" ><i class="icon-pencil"></i> 编辑</button>
                         </td>
                     </tr>
                 <?php endforeach;?>
@@ -104,25 +109,25 @@
             <span></span>
         </div>
         <div class="control-group">
-            <label class="control-label">账号：</label>
+            <label class="control-label">主播昵称：</label>
             <div class="controls">
-                <input type="text" class="m-wrap manager-username" placeholder="" value="" />
+                <input type="text" class="m-wrap anchor-anchor_name" placeholder="" value="" />
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">密码：</label>
+            <label class="control-label">所属平台：</label>
             <div class="controls">
                 <input type="text" class="m-wrap manager-password" placeholder="" value="" />
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">手机号：</label>
+            <label class="control-label">	直播间地址：</label>
             <div class="controls">
                 <input type="text" class="m-wrap manager-mobile" placeholder="" value="" />
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">真实姓名：</label>
+            <label class="control-label">主播描述：</label>
             <div class="controls">
                 <input type="text" class="m-wrap manager-realname" placeholder="" value="" />
             </div>

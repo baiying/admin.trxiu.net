@@ -36,7 +36,7 @@ class SystemController extends BaseController {
         $pageUrl = '/system/manager/?page=$page';
         $maxPage = ceil($res['count'] / $args['pagesize']);
         $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $maxPage);
-        
+//        echo json_encode($renderArgs);exit;
         return $this->render('manager', $renderArgs);
     }
     /**

@@ -11,32 +11,30 @@ class AnchorController extends BaseController {
     public $layout = "main";
 
     public function actionIndex() {
-        $this->js[] = "/js/system/manager.js";
+        $this->js[] = "/js/anchor/index.js";
         $this->css[] = "/media/css/DT_bootstrap.css";
 
         $renderArgs = [];
         // 处理传入参数
         $rule = [
             'page'      => ['type'=>'int', 'default'=>1],
-            'pagesize'  => ['type'=>'int', 'default'=>2],
+            'pagesize'  => ['type'=>'int', 'default'=>5],
             'order'     => ['type'=>'string', 'default'=>'manager_id DESC']
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->get());
 
         // 获取管理员账号信息
-        $res = Yii::$app->api->get('manager/search', $args);
+        $res = Yii::$app->api->get('anchor/get-anchor-list', $args);
         if($res['code'] != 200) {
             $renderArgs['error'] = $res['message'];
             return $this->render('/site/error', $renderArgs);
         }
         // 将管理员列表数据放入renderArgs数组
-        $renderArgs['managers'] = $res['data'];
+        $renderArgs['anchor'] = $res['data']['list'];
         // 生成翻页HTML
-        $pageUrl = '/system/manager/?page=$page';
-        $maxPage = ceil($res['count'] / $args['pagesize']);
-        $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $maxPage);
-
-//        return $this->render('manager', $renderArgs);
+        $pageUrl = '/anchor/index/?page=$page';
+        $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $res['data']['pagecount']);
+//        echo json_encode($renderArgs);exit;
         return $this->render('index', $renderArgs);
     }
 
