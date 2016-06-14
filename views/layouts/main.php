@@ -105,13 +105,13 @@ use yii\helpers\Html;
                     </a>
                     <ul class="sub-menu">
                         <li class="">
+                            <a href="/anchor/index/">主播管理</a>
+                        </li>
+                        <li class="">
                             <a href="/ballot/index/">活动管理</a>
                         </li>
                         <li class="">
                             <a href="/ballot/index/">活动主播管理</a>
-                        </li>
-                        <li class="">
-                            <a href="/anchor/index/">主播管理</a>
                         </li>
                     </ul>
                 </li>
@@ -139,6 +139,9 @@ use yii\helpers\Html;
                     <ul class="sub-menu">
                         <li class="">
                             <a href="/system/manager/">账号管理</a>
+                        </li>
+                        <li class="">
+                            <a href="/fans/index/">用户管理</a>
                         </li>
                     </ul>
                 </li>
