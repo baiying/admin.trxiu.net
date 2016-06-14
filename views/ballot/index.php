@@ -11,26 +11,26 @@
         </li>
     </ul>
     <!-- 筛选条件开始-->
-    <div class="portlet box green">
-        <div class="portlet-title">
-            <div class="caption">按条件查找</div>
-            <div class="tools">
-                <a href="javascript:;" class="collapse"></a>
-            </div>
-        </div>
-        <div class="portlet-body form">
-            <div class="row-fluid">
-                <div class="span3">
-                    <div class="control-group">
-                        <input type="text" placeholder="输入活动名" class="m-wrap span8 args" data-args-key="apply_code" value="" />
-                        <span>
-                            <button class="btn green button-search" ><i class="icon-search"></i> 查找</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div class="portlet box green">-->
+<!--        <div class="portlet-title">-->
+<!--            <div class="caption">按条件查找</div>-->
+<!--            <div class="tools">-->
+<!--                <a href="javascript:;" class="collapse"></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="portlet-body form">-->
+<!--            <div class="row-fluid">-->
+<!--                <div class="span3">-->
+<!--                    <div class="control-group">-->
+<!--                        <input type="text" placeholder="输入活动名" class="m-wrap span8 args" data-args-key="apply_code" value="" />-->
+<!--                        <span>-->
+<!--                            <button class="btn green button-search" ><i class="icon-search"></i> 查找</button>-->
+<!--                        </span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <div class="row-fluid">
         <button class="btn green button-add" ><i class="icon-plus"></i> 添加活动</button>
     </div>
@@ -70,12 +70,19 @@
                         <td><?php echo date("Y-m-d H:i:s", $item['end_time'])?></td>
                         <td><?php echo $item['status'] == 1 ? '有效' : '冻结'?></td>
                         <td>
-                            <button type="button" name="button-edit" class="btn green mini button-edit" data-ballot-id="<?php echo $item['ballot_id']?>" data-ballot-name="<?php echo $item['ballot_name']?>" ><i class="icon-pencil"></i> 编辑</button>
+                            <button type="button" name="button-edit" class="btn green mini button-edit"
+                                    data-ballot_id="<?php echo $item['ballot_id']?>"
+                                    data-ballot_name="<?php echo $item['ballot_name']?>"
+                                    data-description="<?php echo $item['description']?>"
+                                    data-status="<?php echo $item['status']?>"
+                                    data-begin_time="<?php echo date("Y-m-d H:i:s", $item['begin_time'])?>"
+                                    data-end_time="<?php echo date("Y-m-d H:i:s", $item['end_time'])?>"
+                                    ><i class="icon-pencil"></i> 编辑</button>
 
                             <?php if($item['status'] == 1):?>
-                                <button type="button" name="button-lock" class="btn red mini button-status" data-status="2" data-ballot-id="<?php echo $item['ballot_id']?>"><i class="icon-lock"></i> 冻结</button>
+                                <button type="button" name="button-lock" class="btn red mini button-status" data-status="2" data-ballot_id="<?php echo $item['ballot_id']?>"><i class="icon-lock"></i> 冻结</button>
                             <?php else:?>
-                                <button type="button" name="button-unlock" class="btn blue mini button-status" data-status="1" data-ballot-id="<?php echo $item['ballot_id']?>"><i class="icon-unlock"></i> 解冻</button>
+                                <button type="button" name="button-unlock" class="btn blue mini button-status" data-status="1" data-ballot_id="<?php echo $item['ballot_id']?>"><i class="icon-unlock"></i> 解冻</button>
                             <?php endif;?>
                         </td>
                     </tr>
@@ -120,6 +127,24 @@
             <label class="control-label">投票活动说明：</label>
             <div class="controls">
                 <input type="text" class="m-wrap ballot-description" placeholder="" value="" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">开始时间：</label>
+            <div class="controls">
+                <input type="text" class="m-wrap ballot-begin_time" placeholder="" value="" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">结束时间：</label>
+            <div class="controls">
+                <input type="text" class="m-wrap ballot-end_time" placeholder="" value="" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">状态：</label>
+            <div class="controls">
+                <input type="text" class="m-wrap ballot-status" placeholder="" value="" />
             </div>
         </div>
 
