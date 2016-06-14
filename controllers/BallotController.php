@@ -78,7 +78,6 @@ class BallotController extends BaseController {
                 ];
                 $args = $this->getRequestData($rule, Yii::$app->request->get());
                 $res = Yii::$app->api->get('ballot/up-ballot', $args);
-                echo json_encode($res);exit;
                 if($res['code'] == 200) {
                     $json = ['status'=>'success', 'message'=>$res['message']];
                 } else {
