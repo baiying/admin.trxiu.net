@@ -110,9 +110,6 @@ use yii\helpers\Html;
                         <li class="">
                             <a href="/ballot/index/">活动管理</a>
                         </li>
-                        <li class="">
-                            <a href="/ballot/index/">活动主播管理</a>
-                        </li>
                     </ul>
                 </li>
                 <li class="">

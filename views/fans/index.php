@@ -10,30 +10,6 @@
             <a href="/fans/index/">会员管理</a>
         </li>
     </ul>
-    <!-- 筛选条件开始-->
-    <div class="portlet box green">
-        <div class="portlet-title">
-            <div class="caption">按条件查找</div>
-            <div class="tools">
-                <a href="javascript:;" class="collapse"></a>
-            </div>
-        </div>
-        <div class="portlet-body form">
-            <div class="row-fluid">
-                <div class="span3">
-                    <div class="control-group">
-                        <input type="text" placeholder="输入账号" class="m-wrap span8 args" data-args-key="apply_code" value="" />
-                        <span>
-                            <button class="btn green button-search" ><i class="icon-search"></i> 查找</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <button class="btn green button-add" ><i class="icon-plus"></i> 添加主播</button>
-    </div>
     <div class="tabbable tabbable-custom tabbable-custom-profile">
         <table class="table table-striped table-bordered table-hover dataTable">
             <thead>

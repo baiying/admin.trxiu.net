@@ -11,6 +11,9 @@ class BallotController extends BaseController {
 
     public $layout = "main";
 
+    /**
+     * 活动管理
+     */
     public function actionIndex() {
         $this->js[] = "/js/ballot/index.js";
         $this->css[] = "/media/css/DT_bootstrap.css";
@@ -37,6 +40,40 @@ class BallotController extends BaseController {
         $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $res['data']['pagecount']);
 //        echo json_encode($renderArgs);exit;
         return $this->render('index', $renderArgs);
+    }
+
+    /**
+     * 活动主播管理
+     */
+    public function actionAnchor() {
+        $this->js[] = "/js/ballot/ballotAnchor.js";
+        $this->css[] = "/media/css/DT_bootstrap.css";
+
+        $renderArgs = [];
+        // 处理传入参数
+        $rule = [
+            'ballot_id'  => ['type'=>'int', 'required'=>true],
+            'page' => ['type'=>'int', 'default'=>1],
+            'size' => ['type'=>'int', 'default'=>5],
+            'order' => ['type'=>'string', 'default'=>'manager_id DESC']
+        ];
+//        echo json_encode($rule);exit;
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
+
+        // 获取管理员账号信息
+        $res = Yii::$app->api->get('ballot/get-ballot-detail', $args);
+//        echo json_encode($res);exit;
+        if($res['code'] != 200) {
+            $renderArgs['error'] = $res['message'];
+            return $this->render('/site/error', $renderArgs);
+        }
+        // 将管理员列表数据放入renderArgs数组
+        $renderArgs['ballotAnchor'] = $res['data']['anchorList'];
+        // 生成翻页HTML
+//        $pageUrl = '/ballot/anchor/?page=$page';
+//        $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $res['data']['pagecount']);
+
+        return $this->render('ballotAnchor', $renderArgs);
     }
     /**
      * Ajax请求处理

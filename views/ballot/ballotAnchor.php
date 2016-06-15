@@ -8,10 +8,14 @@
         </li>
         <li>
             <a href="/ballot/index/">活动管理</a>
+            <span class="icon-angle-right"></span>
+        </li>
+        <li>
+            <a href="#"><?php echo $_GET['ballot_name']?></a>
         </li>
     </ul>
     <div class="row-fluid">
-        <button class="btn green button-add" ><i class="icon-plus"></i> 添加活动</button>
+        <button class="btn green button-add" ><i class="icon-plus"></i> 关联活动主播</button>
     </div>
     <div class="tabbable tabbable-custom tabbable-custom-profile">
         <table class="table table-striped table-bordered table-hover dataTable">
@@ -20,54 +24,38 @@
                 <th width="25">
                     <input type="checkbox" class="group-checkable checkall" data-set="#sample_1 .checkboxes">
                 </th>
-                <th>活动ID</th>
-                <th>活动名称</th>
-                <th>活动说明</th>
-                <th>参加的主播数量</th>
-                <th>活动总票数</th>
-                <th>创建时间</th>
-                <th>开始时间</th>
-                <th>结束时间</th>
-                <th>活动状态</th>
+                <th>主播昵称</th>
+                <th>主播ID</th>
+                <th>得票数</th>
+                <th>主播头像地址</th>
+                <th>宣传底图</th>
+                <th>微信二维码名片地址</th>
+                <th>所属平台</th>
+                <th>直播间地址</th>
+                <th>主播描述</th>
                 <th class="span3">操作</th>
             </tr>
             </thead>
-            <?php if(!empty($ballot)):?>
+            <?php if(!empty($ballotAnchor)):?>
                 <tbody>
-                <?php foreach($ballot as $item):?>
+                <?php foreach($ballotAnchor as $item):?>
                     <tr>
                         <td>
-                            <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['ballot_id']?>" />
+                            <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['ballot_anchor_id']?>" />
                         </td>
-                        <td><?php echo $item['ballot_id']?></td>
-                        <td><?php echo $item['ballot_name']?></td>
-                        <td><?php echo $item['description']?></td>
-                        <td><?php echo $item['anchor_count']?></td>
+                        <td><?php echo $item['Information']['anchor_name']?></td>
+                        <td><?php echo $item['anchor_id']?></td>
                         <td><?php echo $item['votes']?></td>
-                        <td><?php echo date("Y-m-d H:i:s", $item['create_time'])?></td>
-                        <td><?php echo date("Y-m-d H:i:s", $item['begin_time'])?></td>
-                        <td><?php echo date("Y-m-d H:i:s", $item['end_time'])?></td>
-                        <td><?php echo $item['status'] == 1 ? '有效' : '冻结'?></td>
+                        <td><?php echo $item['Information']['thumb']?></td>
+                        <td><?php echo $item['Information']['backimage']?></td>
+                        <td><?php echo $item['Information']['qrcode']?></td>
+                        <td><?php echo $item['Information']['platform']?></td>
+                        <td><?php echo $item['Information']['broadcast']?></td>
+                        <td><?php echo $item['Information']['description']?></td>
                         <td>
                             <button type="button" name="button-edit" class="btn green mini button-edit"
-                                    data-ballot_id="<?php echo $item['ballot_id']?>"
-                                    data-ballot_name="<?php echo $item['ballot_name']?>"
-                                    data-description="<?php echo $item['description']?>"
-                                    data-status="<?php echo $item['status']?>"
-                                    data-begin_time="<?php echo date("Y-m-d H:i:s", $item['begin_time'])?>"
-                                    data-end_time="<?php echo date("Y-m-d H:i:s", $item['end_time'])?>"
+                                    data-ballot_anchor_id="<?php echo $item['ballot_anchor_id']?>"
                             ><i class="icon-pencil"></i> 编辑</button>
-                            <a href="/ballot/anchor/?ballot_id=<?php echo $item['ballot_id']?>&ballot_name=<?php echo $item['ballot_name']?>">
-                                <button type="button" name="button-anchor" class="btn green mini button-anchor"
-                                        data-ballot_id="<?php echo $item['ballot_id']?>"
-                                ><i class="icon-pencil"></i> 管理活动主播</button>
-                            </a>
-
-                            <?php if($item['status'] == 1):?>
-                                <button type="button" name="button-lock" class="btn red mini button-status" data-status="2" data-ballot_id="<?php echo $item['ballot_id']?>"><i class="icon-lock"></i> 冻结</button>
-                            <?php else:?>
-                                <button type="button" name="button-unlock" class="btn blue mini button-status" data-status="1" data-ballot_id="<?php echo $item['ballot_id']?>"><i class="icon-unlock"></i> 解冻</button>
-                            <?php endif;?>
                         </td>
                     </tr>
                 <?php endforeach;?>
