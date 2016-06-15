@@ -8,6 +8,7 @@ use Yii;
 use yii\web\Controller;
 use yii\helpers\Json;
 use app\models\Manager;
+use app\components\ApiCode;
 
 class BaseController extends Controller {
     // 设置布局文件

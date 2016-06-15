@@ -9,7 +9,7 @@ use yii\helpers\Html;
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>66汽配管理系统</title>
+    <title>唐人秀后台管理系统</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -35,7 +35,7 @@ use yii\helpers\Html;
     <link href="<?php echo $css?>" rel="stylesheet" type="text/css"/>
     <?php   endforeach;?>
     <?php endif;?>
-    <!-- END PAGE LEVEL STYLES -->  
+    <!-- END PAGE LEVEL STYLES -->
     <link rel="shortcut icon" href="/media/image/favicon.ico" />
 </head>
 <!-- END HEAD -->
@@ -55,9 +55,9 @@ use yii\helpers\Html;
                 <!-- BEGIN RESPONSIVE MENU TOGGLER -->
                 <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
                 <img src="/media/image/menu-toggler.png" alt="" />
-                </a>          
-                <!-- END RESPONSIVE MENU TOGGLER -->            
-                <!-- BEGIN TOP NAVIGATION MENU -->              
+                </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
                 <ul class="nav pull-right">
                     <!-- BEGIN USER LOGIN DROPDOWN -->
                     <li class="dropdown user">
@@ -73,7 +73,7 @@ use yii\helpers\Html;
                     </li>
                     <!-- END USER LOGIN DROPDOWN -->
                 </ul>
-                <!-- END TOP NAVIGATION MENU --> 
+                <!-- END TOP NAVIGATION MENU -->
             </div>
         </div>
         <!-- END TOP NAVIGATION BAR -->
@@ -83,7 +83,7 @@ use yii\helpers\Html;
     <div class="page-container row-fluid">
         <!-- BEGIN SIDEBAR -->
         <div class="page-sidebar nav-collapse collapse">
-            <!-- BEGIN SIDEBAR MENU -->        
+            <!-- BEGIN SIDEBAR MENU -->
             <ul class="page-sidebar-menu">
                 <li>
                     <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -105,10 +105,10 @@ use yii\helpers\Html;
                     </a>
                     <ul class="sub-menu">
                         <li class="">
-                            <a href="/ballot/index/">投票管理</a>
+                            <a href="/anchor/index/">主播管理</a>
                         </li>
                         <li class="">
-                            <a href="/anchor/index/">主播管理</a>
+                            <a href="/ballot/index/">活动管理</a>
                         </li>
                     </ul>
                 </li>
@@ -136,6 +136,9 @@ use yii\helpers\Html;
                     <ul class="sub-menu">
                         <li class="">
                             <a href="/system/manager/">账号管理</a>
+                        </li>
+                        <li class="">
+                            <a href="/fans/index/">用户管理</a>
                         </li>
                     </ul>
                 </li>
