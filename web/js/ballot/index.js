@@ -91,7 +91,7 @@ $(".button-confirm").click(function() {
                 return true;
             } else {
                 $("#editModal").find(".alert-error").find("span").html(json.message);
-                $("#editModal").find(".alert-1error").show();
+                $("#editModal").find(".alert-error").show();
                 btn.button('reset');
                 return false;
             }

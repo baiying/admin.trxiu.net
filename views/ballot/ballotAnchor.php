@@ -90,39 +90,15 @@
             <span></span>
         </div>
         <div class="control-group">
-            <label class="control-label">投票活动名称：</label>
-            <div class="controls">
-                <input type="text" class="m-wrap ballot-ballot_name" placeholder="" value="" />
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">投票活动说明：</label>
-            <div class="controls">
-                <input type="text" class="m-wrap ballot-description" placeholder="" value="" />
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">开始时间：</label>
-            <div class="controls">
-                <input type="text" class="m-wrap ballot-begin_time" placeholder="" value="" />
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">结束时间：</label>
-            <div class="controls">
-                <input type="text" class="m-wrap ballot-end_time" placeholder="" value="" />
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">状态：</label>
-            <div class="controls">
-                <input type="text" class="m-wrap ballot-status" placeholder="" value="" />
-            </div>
+            <label class="control-label">选择主播：</label>
+            <select name="sel" id="anchorSelect">
+                <option value="0">--下拉选择主播--</option>
+            </select>
         </div>
 
     </div>
     <div class="modal-footer">
-        <button type="button"  class="btn blue button-confirm" data-loading-text="提交中...">确定</button>
+        <button type="button"  class="btn blue button-confirm" data-loading-text="提交中..." data-ballot_id="<?php echo $ballotId?>">确定</button>
         <button type="button" data-dismiss="modal" class="btn">取消</button>
         <input type="hidden" id="ballot_id" value="" />
     </div>

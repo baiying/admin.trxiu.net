@@ -69,6 +69,8 @@ class BallotController extends BaseController {
         }
         // 将管理员列表数据放入renderArgs数组
         $renderArgs['ballotAnchor'] = $res['data']['anchorList'];
+        $renderArgs['ballotId'] = $res['data']['ballot_id'];
+//        echo json_encode($renderArgs);exit;
         // 生成翻页HTML
 //        $pageUrl = '/ballot/anchor/?page=$page';
 //        $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $res['data']['pagecount']);
@@ -139,6 +141,33 @@ class BallotController extends BaseController {
                 $res = Yii::$app->api->get('ballot/up-ballot', $args);
                 if($res['code'] == 200) {
                     $json = ['status'=>'success', 'message'=>$res['message']];
+                } else {
+                    $json = ['status'=>'fail', 'message'=>$res['message']];
+                }
+                exit(Json::encode($json));
+                break;
+            // 获取主播列表
+            case 'getAnchorList':
+                $args = [
+                    'size' => 'max',
+                ];
+                $res = Yii::$app->api->get('anchor/get-anchor-list',$args);
+                if($res['code'] == 200) {
+                    $json = ['status'=>'success', 'message'=>$res['message'],'data'=>$res['data']];
+                } else {
+                    $json = ['status'=>'fail', 'message'=>$res['message']];
+                }
+                exit(Json::encode($json));
+                break;
+            case 'addAnchor':
+                $rule = [
+                    'anchor_id' => ['type'=>'int', 'required'=>true],
+                    'ballot_id' => ['type'=>'int', 'required'=>true],
+                ];
+                $args = $this->getRequestData($rule, Yii::$app->request->get());
+                $res = Yii::$app->api->get('ballot/ballot-add-anchor',$args);
+                if($res['code'] == 200) {
+                    $json = ['status'=>'success', 'message'=>$res['message'],'data'=>$res['data']];
                 } else {
                     $json = ['status'=>'fail', 'message'=>$res['message']];
                 }
