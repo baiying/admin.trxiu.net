@@ -72,12 +72,19 @@ class BallotController extends BaseController {
                     'ballot_id' => ['type'=>'int', 'required'=>true],
                     'ballot_name' => ['type'=>'string', 'required'=>false],
                     'description' => ['type'=>'string', 'required'=>false],
-                    'begin_time' => ['type'=>'int', 'required'=>false],
-                    'end_time' => ['type'=>'int', 'required'=>false],
+                    'begin_time' => ['type'=>'string', 'required'=>false],
+                    'end_time' => ['type'=>'string', 'required'=>false],
                     'status' => ['type'=>'int', 'required'=>false],
                 ];
                 $args = $this->getRequestData($rule, Yii::$app->request->get());
+                if(isset($args['begin_time'])){
+                    $args['begin_time'] = strtotime($args['begin_time']);
+                }
+                if(isset($args['end_time'])){
+                    $args['end_time'] = strtotime($args['end_time']);
+                }
                 $res = Yii::$app->api->get('ballot/up-ballot', $args);
+//                echo json_encode($res);exit;
                 if($res['code'] == 200) {
                     $json = ['status'=>'success', 'message'=>$res['message']];
                 } else {
