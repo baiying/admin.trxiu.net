@@ -62,13 +62,13 @@
                         <td>
                             <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['anchor_id']?>" />
                         </td>
+                        <td><?php echo $item['anchor_id']?></td>
                         <td><?php echo $item['anchor_name']?></td>
-                        <td><?php echo $item['thumb']?></td>
-                        <td><?php echo $item['backimage']?></td>
-                        <td><?php echo $item['create_time']?></td>
-                        <td><?php echo $item['qrcode']?></td>
-                        <td><?php echo $item['platform']?></td>
-                        <td><?php echo $item['broadcast']?></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['thumb']?></p></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['backimage']?></p></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['qrcode']?></p></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['platform']?></p></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['broadcast']?></p></td>
                         <td><?php echo $item['description']?></td>
                         <td><?php echo date("Y-m-d H:i:s", $item['create_time'])?></td>
                         <td><?php echo date("Y-m-d H:i:s", $item['modify_time'])?></td>

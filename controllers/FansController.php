@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\controllers\BaseController;
+use yii\helpers\Json;
 
 class FansController extends BaseController {
 
@@ -35,6 +36,40 @@ class FansController extends BaseController {
         $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $res['data']['pagecount']);
 //        echo json_encode($renderArgs);exit;
         return $this->render('index', $renderArgs);
+    }
+
+
+    /**
+     * Ajax请求处理
+     */
+    public function actionAjax() {
+        if(!Yii::$app->request->get('act')) {
+            exit(Json::encode(['status'=>'fail', 'message'=>'缺少act参数']));
+        }
+        $act = Yii::$app->request->get('act');
+        switch($act) {
+            // 创建新活动
+            case 'addAnchor':
+                $rule = [
+                    'fans_id' => ['type'=>'int', 'required'=>true],
+                    'backimage' => ['type'=>'string', 'required'=>false],
+                    'qrcode' => ['type'=>'string', 'required'=>false],
+                    'platform' => ['type'=>'string', 'required'=>false],
+                    'broadcast' => ['type'=>'string', 'required'=>false],
+                    'description' => ['type'=>'string', 'required'=>false],
+                ];
+//                echo json_encode(Yii::$app->request->get());exit;
+                $args = $this->getRequestData($rule, Yii::$app->request->get());
+//                echo json_encode($args);exit;
+                $res = Yii::$app->api->get('anchor/add-anchor', $args);
+                if($res['code'] == 200) {
+                    $json = ['status'=>'success', 'message'=>$res['message']];
+                } else {
+                    $json = ['status'=>'fail', 'message'=>$res['message']];
+                }
+                exit(Json::encode($json));
+                break;
+        }
     }
 
 }

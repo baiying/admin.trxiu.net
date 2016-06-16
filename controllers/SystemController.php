@@ -19,7 +19,7 @@ class SystemController extends BaseController {
         // 处理传入参数
         $rule = [
             'page'      => ['type'=>'int', 'default'=>1],
-            'pagesize'  => ['type'=>'int', 'default'=>2],
+            'pagesize'  => ['type'=>'int', 'default'=>5],
             'order'     => ['type'=>'string', 'default'=>'manager_id DESC']
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->get());

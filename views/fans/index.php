@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h3>主播管理</h3>
+    <h3>会员管理</h3>
     <ul class="breadcrumb">
         <li>
             <i class="icon-home"></i>
@@ -38,23 +38,23 @@
                 <?php foreach($fansList as $item):?>
                     <tr>
                         <td>
-                            <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['fans_id']?>" />
+                            <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['fans_id'];?>" />
                         </td>
-                        <td><?php echo $item['anchor_id']?></td>
+                        <td><?php echo $item['anchor_id'];?></td>
                         <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_openid']?></p></td>
-                        <td><?php echo $item['wx_name']?></td>
-                        <td><?php echo $item['wx_sex']?></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_thumb']?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_access_token']?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_refresh_token']?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_access_token_expire']?></p></td>
-                        <td><?php echo $item['wx_country']?></td>
-                        <td><?php echo $item['wx_province']?></td>
-                        <td><?php echo $item['wx_city']?></td>
-                        <td><?php echo $item['wx_unionid']?></td>
+                        <td><?php echo $item['wx_name'];?></td>
+                        <td><?php echo $item['wx_sex'];?></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_thumb'];?></p></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_access_token'];?></p></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_refresh_token'];?></p></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_access_token_expire'];?></p></td>
+                        <td><?php echo $item['wx_country'];?></td>
+                        <td><?php echo $item['wx_province'];?></td>
+                        <td><?php echo $item['wx_city'];?></td>
+                        <td><?php echo $item['wx_unionid'];?></td>
                         <td><?php echo date("Y-m-d H:i:s", $item['create_time'])?></td>
                         <td>
-                            <button type="button" name="button-edit" class="btn green mini button-edit" data-anchor-id="<?php echo $item['fans_id']?>" data-anchor-name="<?php echo $item['wx_name']?>" ><p style="width: 6em;padding:0px;"><i class="icon-pencil"></i> 晋升主播</p></button>
+                            <button type="button" name="button-addAnchor" class="btn green mini addAnchor" data-anchor_id="<?php echo $item['anchor_id'];?>" data-fans_id="<?php echo $item['fans_id'];?>" data-wx_name="<?php echo $item['wx_name'];?>" ><p style="width: 6em;padding:0px;"><i class="icon-pencil"></i> 晋升主播</p></button>
                         </td>
                     </tr>
                 <?php endforeach;?>
@@ -78,8 +78,8 @@
         <!-- 分页结束-->
     </div>
 </div>
-<!-- 管理员信息编辑弹出层 -->
-<div id="editModal" class="modal hide fade in" tabindex="-1" data-width="760" aria-hidden="false">
+<!-- 主播信息编辑弹出层 -->
+<div id="addAnchor" class="modal hide fade in" tabindex="-1" data-width="760" aria-hidden="false">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
         <h3></h3>
@@ -89,27 +89,45 @@
             <span></span>
         </div>
         <div class="control-group">
-            <label class="control-label">主播昵称：</label>
+            <label class="control-label">粉丝ID：</label>
             <div class="controls">
-                <input type="text" class="m-wrap anchor-anchor_name" placeholder="" value="" />
+                <input type="text" class="m-wrap anchor-fans_id" placeholder="" value="" disabled/>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">所属平台：</label>
+            <label class="control-label">粉丝昵称：</label>
             <div class="controls">
-                <input type="text" class="m-wrap manager-password" placeholder="" value="" />
+                <input type="text" class="m-wrap anchor-wx_name" placeholder="" value="" disabled/>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">	直播间地址：</label>
+            <label class="control-label">宣传底图：</label>
             <div class="controls">
-                <input type="text" class="m-wrap manager-mobile" placeholder="" value="" />
+                <input type="text" class="m-wrap anchor-backimage" placeholder="" value="" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">微信二维码名片地址：</label>
+            <div class="controls">
+                <input type="text" class="m-wrap anchor-qrcode" placeholder="" value="" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">	所属平台：</label>
+            <div class="controls">
+                <input type="text" class="m-wrap anchor-platform" placeholder="" value="" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">直播间地址：</label>
+            <div class="controls">
+                <input type="text" class="m-wrap anchor-broadcast" placeholder="" value="" />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">主播描述：</label>
             <div class="controls">
-                <input type="text" class="m-wrap manager-realname" placeholder="" value="" />
+                <input type="text" class="m-wrap anchor-description" placeholder="" value="" />
             </div>
         </div>
 
