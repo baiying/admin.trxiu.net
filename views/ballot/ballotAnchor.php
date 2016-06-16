@@ -24,8 +24,8 @@
                 <th width="25">
                     <input type="checkbox" class="group-checkable checkall" data-set="#sample_1 .checkboxes">
                 </th>
-                <th>主播昵称</th>
                 <th>主播ID</th>
+                <th>主播昵称</th>
                 <th>得票数</th>
                 <th>主播头像地址</th>
                 <th>宣传底图</th>
@@ -43,15 +43,15 @@
                         <td>
                             <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['ballot_anchor_id']?>" />
                         </td>
-                        <td><?php echo $item['Information']['anchor_name']?></td>
                         <td><?php echo $item['anchor_id']?></td>
+                        <td><?php echo $item['Information']['anchor_name']?></td>
                         <td><?php echo $item['votes']?></td>
-                        <td><?php echo $item['Information']['thumb']?></td>
-                        <td><?php echo $item['Information']['backimage']?></td>
-                        <td><?php echo $item['Information']['qrcode']?></td>
-                        <td><?php echo $item['Information']['platform']?></td>
-                        <td><?php echo $item['Information']['broadcast']?></td>
-                        <td><?php echo $item['Information']['description']?></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['thumb']?></p></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['backimage']?></p></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['qrcode']?></p></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['platform']?></p></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['broadcast']?></p></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['description']?></p></td>
                         <td>
                             <button type="button" name="button-edit" class="btn green mini button-edit"
                                     data-ballot_anchor_id="<?php echo $item['ballot_anchor_id']?>"
