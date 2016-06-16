@@ -10,30 +10,6 @@
             <a href="/anchor/index/">主播管理</a>
         </li>
     </ul>
-    <!-- 筛选条件开始-->
-    <div class="portlet box green">
-        <div class="portlet-title">
-            <div class="caption">按条件查找</div>
-            <div class="tools">
-                <a href="javascript:;" class="collapse"></a>
-            </div>
-        </div>
-        <div class="portlet-body form">
-            <div class="row-fluid">
-                <div class="span3">
-                    <div class="control-group">
-                        <input type="text" placeholder="输入账号" class="m-wrap span8 args" data-args-key="apply_code" value="" />
-                        <span>
-                            <button class="btn green button-search" ><i class="icon-search"></i> 查找</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <button class="btn green button-add" ><i class="icon-plus"></i> 添加主播</button>
-    </div>
     <div class="tabbable tabbable-custom tabbable-custom-profile">
         <table class="table table-striped table-bordered table-hover dataTable">
             <thead>
@@ -69,12 +45,21 @@
                         <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['qrcode']?></p></td>
                         <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['platform']?></p></td>
                         <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['broadcast']?></p></td>
-                        <td><?php echo $item['description']?></td>
+                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['description']?></p></td>
                         <td><?php echo date("Y-m-d H:i:s", $item['create_time'])?></td>
                         <td><?php echo date("Y-m-d H:i:s", $item['modify_time'])?></td>
                         <td><?php echo $item['last_time']?></td>
                         <td>
-                            <button type="button" name="button-edit" class="btn green mini button-edit" data-anchor-id="<?php echo $item['anchor_id']?>" data-anchor-name="<?php echo $item['anchor_name']?>" ><i class="icon-pencil"></i> 编辑</button>
+                            <button type="button" name="button-edit" class="btn green mini button-edit"
+                                    data-anchor_id="<?php echo $item['anchor_id']?>"
+                                    data-anchor_name="<?php echo $item['anchor_name']?>"
+                                    data-thumb="<?php echo $item['thumb']?>"
+                                    data-backimage="<?php echo $item['backimage']?>"
+                                    data-qrcode="<?php echo $item['qrcode']?>"
+                                    data-platform="<?php echo $item['platform']?>"
+                                    data-broadcast="<?php echo $item['broadcast']?>"
+                                    data-description="<?php echo $item['description']?>"
+                            ><i class="icon-pencil"></i> 编辑</button>
                         </td>
                     </tr>
                 <?php endforeach;?>
@@ -111,25 +96,43 @@
         <div class="control-group">
             <label class="control-label">主播昵称：</label>
             <div class="controls">
-                <input type="text" class="m-wrap anchor-anchor_name" placeholder="" value="" />
+                <input type="text" class="m-wrap anchor-name" placeholder="" value="" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">主播头像：</label>
+            <div class="controls">
+                <input type="text" class="m-wrap anchor-thumb" placeholder="" value="" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">宣传底图：</label>
+            <div class="controls">
+                <input type="text" class="m-wrap anchor-backimage" placeholder="" value="" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">微信二维码名片地址：</label>
+            <div class="controls">
+                <input type="text" class="m-wrap anchor-qrcode" placeholder="" value="" />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">所属平台：</label>
             <div class="controls">
-                <input type="text" class="m-wrap manager-password" placeholder="" value="" />
+                <input type="text" class="m-wrap anchor-platform" placeholder="" value="" />
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">	直播间地址：</label>
+            <label class="control-label">直播间地址：</label>
             <div class="controls">
-                <input type="text" class="m-wrap manager-mobile" placeholder="" value="" />
+                <input type="text" class="m-wrap anchor-broadcast" placeholder="" value="" />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">主播描述：</label>
             <div class="controls">
-                <input type="text" class="m-wrap manager-realname" placeholder="" value="" />
+                <input type="text" class="m-wrap anchor-description" placeholder="" value="" />
             </div>
         </div>
 
@@ -137,7 +140,7 @@
     <div class="modal-footer">
         <button type="button"  class="btn blue button-confirm" data-loading-text="提交中...">确定</button>
         <button type="button" data-dismiss="modal" class="btn">取消</button>
-        <input type="hidden" id="managerid" value="" />
+        <input type="hidden" id="anchor_id" value="" />
     </div>
 </div>
 
