@@ -85,7 +85,7 @@ $(".button-confirm").click(function() {
 			btn.button('loading');
 		},
 		success: function(json) {
-			if(json.status = 'success') {
+			if(json.status == 'success') {
 				location.reload(true);
 				return true;
 			} else {
