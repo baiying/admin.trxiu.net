@@ -24,17 +24,31 @@ class AnchorController extends BaseController {
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->get());
 
-        // 获取管理员账号信息
+        // 获取主播信息
         $res = Yii::$app->api->get('anchor/get-anchor-list', $args);
         if($res['code'] != 200) {
             $renderArgs['error'] = $res['message'];
             return $this->render('/site/error', $renderArgs);
         }
-        // 将管理员列表数据放入renderArgs数组
-        $renderArgs['anchor'] = $res['data']['list'];
+        $pagecount = $res['data']['pagecount'];
+        // 获取主播对应的普通用户信息
+        $anchors = [];
+        $anchorids = [];
+        foreach($res['data']['list'] as $item) {
+            $anchors[$item['anchor_id']] = $item;
+            $anchorids[] = $item['anchor_id'];
+        }
+        $res = Yii::$app->api->get('fans/get-fans-list', ['anchor_id'=>implode(",", $anchorids)]);
+        if($res['code'] == 200) {
+            foreach($res['data']['list'] as $item) {
+                $anchors[$item['anchor_id']]['wx_name'] = $item['wx_name'];
+                $anchors[$item['anchor_id']]['wx_thumb'] = $item['wx_thumb'];
+            }
+        }
+        $renderArgs['anchor'] = $anchors;
         // 生成翻页HTML
         $pageUrl = '/anchor/index/?page=$page';
-        $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $res['data']['pagecount']);
+        $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $pagecount);
 //        echo json_encode($renderArgs);exit;
         return $this->render('index', $renderArgs);
     }

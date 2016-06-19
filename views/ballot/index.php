@@ -116,13 +116,20 @@
         <div class="control-group">
             <label class="control-label">开始时间：</label>
             <div class="controls">
-                <input type="text" class="m-wrap ballot-begin_time" placeholder="" value="" />
+                <div class="input-append date form_datetime">
+					<input size="10" id="begin_time" type="text" value="" class="m-wrap ballot-begin_time">
+					<span class="add-on"><i class="icon-calendar"></i></span>
+				</div>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">结束时间：</label>
             <div class="controls">
-                <input type="text" class="m-wrap ballot-end_time" placeholder="" value="" />
+                <div class="input-append date form_datetime">
+					<input size="10" id="end_time" type="text" value="" class="m-wrap ballot-end_time">
+					<span class="add-on"><i class="icon-calendar"></i></span>
+				</div>
+                
             </div>
         </div>
         <div class="control-group">

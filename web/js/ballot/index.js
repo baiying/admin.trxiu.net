@@ -1,6 +1,15 @@
 /**
  * 账号管理页面JS脚本
  */
+// 初始化页面中的datetimepicker组件
+var handleDatetimePicker = function () {        
+	$(".form_datetime").datetimepicker({
+		format: "yyyy-mm-dd hh:ii",
+		autoClose: true,
+		pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left")
+	});
+}
+handleDatetimePicker();
 
 $(".button-status").click(function() {
     var status = $(this).attr('data-status');

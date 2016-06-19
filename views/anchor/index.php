@@ -17,18 +17,15 @@
                 <th width="25">
                     <input type="checkbox" class="group-checkable checkall" data-set="#sample_1 .checkboxes">
                 </th>
-                <th>主播ID</th>
+                <th width="80">主播头像</th>
+                <th width="80">二维码</th>
                 <th>主播昵称</th>
-                <th>主播头像</th>
-                <th>宣传底图</th>
-                <th>微信二维码名片</th>
-                <th>所属平台</th>
-                <th>直播间地址</th>
-                <th>主播描述</th>
-                <th>注册时间</th>
-                <th>信息更新时间</th>
-                <th>最后登录时间</th>
-                <th class="span3">操作</th>
+                <th width="40">平台</th>
+                <th width="80">直播间</th>
+                <th>描述</th>
+                <th width="80">注册时间</th>
+                <th width="80">最后登录</th>
+                <th class="span2">操作</th>
             </tr>
             </thead>
             <?php if(!empty($anchor)):?>
@@ -38,17 +35,32 @@
                         <td>
                             <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['anchor_id']?>" />
                         </td>
-                        <td><?php echo $item['anchor_id']?></td>
-                        <td><?php echo $item['anchor_name']?></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['thumb']?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['backimage']?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['qrcode']?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['platform']?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['broadcast']?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['description']?></p></td>
-                        <td><?php echo date("Y-m-d H:i:s", $item['create_time'])?></td>
-                        <td><?php echo date("Y-m-d H:i:s", $item['modify_time'])?></td>
-                        <td><?php echo $item['last_time']?></td>
+                        <td>
+                            <?php if($item['wx_thumb'] != ""):?>
+                            <img width="80" src="<?php echo $item['wx_thumb']?>" />
+                            <?php else:?>
+                            <?php echo "无"?>
+                            <?php endif;?>
+                        </td>
+                        <td>
+                            <?php if($item['qrcode'] != ""):?>
+                            <img width="80" src="<?php echo $item['qrcode']?>" />
+                            <?php else:?>
+                            <?php echo "无"?>
+                            <?php endif;?>
+                        </td>
+                        <td>
+                            <h4><?php echo $item['wx_name'];?></h4>
+                            <p>
+                            <span class="label label-gray">主播ID:</span>
+                            <?php echo $item['anchor_id']?>
+                            </p>
+                        </td>
+                        <td><?php echo $item['platform']?></td>
+                        <td><a href="<?php echo $item['broadcast']?>" target="_blank">前往直播间</a></td>
+                        <td><?php echo $item['description']?></td>
+                        <td><?php echo date("Y-m-d", $item['create_time'])?></td>
+                        <td><?php echo date("Y-m-d", $item['last_time'])?></td>
                         <td>
                             <button type="button" name="button-edit" class="btn green mini button-edit"
                                     data-anchor_id="<?php echo $item['anchor_id']?>"

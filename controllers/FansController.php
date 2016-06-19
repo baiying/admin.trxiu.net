@@ -13,7 +13,12 @@ class FansController extends BaseController {
 
     public function actionIndex() {
         $this->js[] = "/js/fans/index.js";
+        $this->js[] = "http://jssdk.demo.qiniu.io/bower_components/plupload/js/moxie.js";
+        $this->js[] = "http://jssdk.demo.qiniu.io/bower_components/plupload/js/plupload.min.js";
+        $this->js[] = "http://jssdk.demo.qiniu.io/bower_components/plupload/js/i18n/zh_CN.js";
+        $this->js[] = "/js/common/qiniu.js";
         $this->css[] = "/media/css/DT_bootstrap.css";
+        $this->css[] = "/media/css/jquery.fileupload-ui.css";
 
         $renderArgs = [];
         // 处理传入参数

@@ -17,20 +17,14 @@
                 <th width="25">
                     <input type="checkbox" class="group-checkable checkall" data-set="#sample_1 .checkboxes">
                 </th>
-                <th>主播ID</th>
-                <th>openid</th>
-                <th>微信账号</th>
-                <th>性别</th>
-                <th>微信头像</th>
-                <th>access_token</th>
-                <th>refresh_token</th>
-                <th>access_token</th>
-                <th>国家</th>
+                <th width="90">头像</th>
+                <th>昵称及openid</th>
+                <th width="50">性别</th>
+                <th width="50">主播</th>
                 <th>省份</th>
                 <th>城市</th>
-                <th>unionid</th>
-                <th>注册时间</th>
-                <th class="span3">操作</th>
+                <th width="90">注册时间</th>
+                <th width="100">操作</th>
             </tr>
             </thead>
             <?php if(!empty($fansList)):?>
@@ -40,21 +34,29 @@
                         <td>
                             <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['fans_id'];?>" />
                         </td>
-                        <td><?php echo $item['anchor_id'];?></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_openid']?></p></td>
-                        <td><?php echo $item['wx_name'];?></td>
-                        <td><?php echo $item['wx_sex'];?></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_thumb'];?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_access_token'];?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_refresh_token'];?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['wx_access_token_expire'];?></p></td>
-                        <td><?php echo $item['wx_country'];?></td>
+                        <td>
+                            <?php if($item['wx_thumb'] != ""):?>
+                            <img width="80" src="<?php echo $item['wx_thumb']?>" />
+                            <?php else:?>
+                            <?php echo "无"?>
+                            <?php endif;?>
+                        </td>
+                        <td>
+                            <h4><?php echo $item['wx_name'];?></h4>
+                            <p>
+                            <span class="label label-gray">openid:</span>
+                            <?php echo $item['wx_openid']?>
+                            </p>
+                        </td>
+                        <td><?php echo $item['wx_sex'] == 1 ? '男' : '女';?></td>
+                        <td><?php echo $item['anchor_id'] > 0 ? '是' : '否';?></td>
                         <td><?php echo $item['wx_province'];?></td>
                         <td><?php echo $item['wx_city'];?></td>
-                        <td><?php echo $item['wx_unionid'];?></td>
-                        <td><?php echo date("Y-m-d H:i:s", $item['create_time'])?></td>
+                        <td><?php echo date("Y-m-d", $item['create_time'])?></td>
                         <td>
+                        <?php if($item['anchor_id'] == 0):?>
                             <button type="button" name="button-addAnchor" class="btn green mini addAnchor" data-anchor_id="<?php echo $item['anchor_id'];?>" data-fans_id="<?php echo $item['fans_id'];?>" data-wx_name="<?php echo $item['wx_name'];?>" ><p style="width: 6em;padding:0px;"><i class="icon-pencil"></i> 晋升主播</p></button>
+                        <?php endif;?>
                         </td>
                     </tr>
                 <?php endforeach;?>
@@ -102,18 +104,26 @@
         </div>
         <div class="control-group">
             <label class="control-label">宣传底图：</label>
-            <div class="controls">
-                <input type="text" class="m-wrap anchor-backimage" placeholder="" value="" />
+            <div class="controls" id="container">
+                <img src="" width="200" class="bgimg" style="display:none;" />
+                <input type="hidden" class="anchor-backimage" value="" />
+                <p>
+                    <button type="button" id="pickfiles" data-loading-text="上传中..." class="btn mini green">上传图片</button>
+				</p>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">微信二维码名片地址：</label>
-            <div class="controls">
-                <input type="text" class="m-wrap anchor-qrcode" placeholder="" value="" />
+            <div class="controls" id="container_qrcode">
+                <img src="" width="200" class="qrcode" style="display:none;" />
+                <input type="hidden" class="anchor-qrcode" value="" />
+                <p>
+                    <button type="button" id="btn_qrcode" data-loading-text="上传中..." class="btn mini green">上传图片</button>
+				</p>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">	所属平台：</label>
+            <label class="control-label">所属平台：</label>
             <div class="controls">
                 <input type="text" class="m-wrap anchor-platform" placeholder="" value="" />
             </div>
@@ -127,7 +137,7 @@
         <div class="control-group">
             <label class="control-label">主播描述：</label>
             <div class="controls">
-                <input type="text" class="m-wrap anchor-description" placeholder="" value="" />
+                <textarea class="m-wrap anchor-description" rows="3"></textarea>
             </div>
         </div>
 
