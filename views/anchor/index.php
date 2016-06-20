@@ -36,7 +36,7 @@
                             <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['anchor_id']?>" />
                         </td>
                         <td>
-                            <?php if($item['wx_thumb'] != ""):?>
+                            <?php if(isset($item['wx_thumb']) && $item['wx_thumb'] != ""):?>
                             <img width="80" src="<?php echo $item['wx_thumb']?>" />
                             <?php else:?>
                             <?php echo "无"?>
@@ -50,7 +50,7 @@
                             <?php endif;?>
                         </td>
                         <td>
-                            <h4><?php echo $item['wx_name'];?></h4>
+                            <h4><?php echo isset($item['wx_name']) ? $item['wx_name'] : '';?></h4>
                             <p>
                             <span class="label label-gray">主播ID:</span>
                             <?php echo $item['anchor_id']?>
