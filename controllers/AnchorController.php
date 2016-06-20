@@ -26,26 +26,15 @@ class AnchorController extends BaseController {
 
         // 获取主播信息
         $res = Yii::$app->api->get('anchor/get-anchor-list', $args);
+//        echo json_encode($res);exit;
         if($res['code'] != 200) {
             $renderArgs['error'] = $res['message'];
             return $this->render('/site/error', $renderArgs);
         }
+//        echo json_encode($res);exit;
         $pagecount = $res['data']['pagecount'];
         // 获取主播对应的普通用户信息
-        $anchors = [];
-        $anchorids = [];
-        foreach($res['data']['list'] as $item) {
-            $anchors[$item['anchor_id']] = $item;
-            $anchorids[] = $item['anchor_id'];
-        }
-        $res = Yii::$app->api->get('fans/get-fans-list', ['anchor_id'=>implode(",", $anchorids)]);
-        if($res['code'] == 200) {
-            foreach($res['data']['list'] as $item) {
-                $anchors[$item['anchor_id']]['wx_name'] = $item['wx_name'];
-                $anchors[$item['anchor_id']]['wx_thumb'] = $item['wx_thumb'];
-            }
-        }
-        $renderArgs['anchor'] = $anchors;
+        $renderArgs['anchor'] = $res['data']['list'];
         // 生成翻页HTML
         $pageUrl = '/anchor/index/?page=$page';
         $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $pagecount);

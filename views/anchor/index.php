@@ -36,8 +36,8 @@
                             <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['anchor_id']?>" />
                         </td>
                         <td>
-                            <?php if(isset($item['wx_thumb']) && $item['wx_thumb'] != ""):?>
-                            <img width="80" src="<?php echo $item['wx_thumb']?>" />
+                            <?php if(isset($item['thumb']) && $item['thumb'] != ""):?>
+                            <img width="80" src="<?php echo $item['thumb']?>" />
                             <?php else:?>
                             <?php echo "无"?>
                             <?php endif;?>
