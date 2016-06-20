@@ -135,7 +135,11 @@
         <div class="control-group">
             <label class="control-label">状态：</label>
             <div class="controls">
-                <input type="text" class="m-wrap ballot-status" placeholder="" value="" />
+                <select name="sel" class="m-wrap ballot-status">
+                    <option value="1">有效</option>
+                    <option value="2">冻结</option>
+                    <option value="3">已结束</option>
+                </select>
             </div>
         </div>
 

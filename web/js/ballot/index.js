@@ -41,7 +41,7 @@ $(".button-status").click(function() {
     });
 });
 /**
- * 添加管理员按钮
+ * 添加活动
  */
 $(".button-add").click(function() {
     clearForm();
@@ -72,7 +72,8 @@ $(".button-confirm").click(function() {
         ballot_name : $(".ballot-ballot_name").val(),
         description : $(".ballot-description").val(),
         begin_time : $(".ballot-begin_time").val(),
-        end_time : $(".ballot-end_time").val()
+        end_time : $(".ballot-end_time").val(),
+        status : $(".ballot-status").val()
     };
     var act = ballot.ballot_id > 0 ? 'editBallot' : 'createBallot';
 
