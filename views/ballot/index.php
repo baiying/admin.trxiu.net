@@ -57,10 +57,8 @@
                                     data-begin_time="<?php echo date("Y-m-d H:i:s", $item['begin_time'])?>"
                                     data-end_time="<?php echo date("Y-m-d H:i:s", $item['end_time'])?>"
                             ><i class="icon-pencil"></i> 编辑</button>
-                            <a href="/ballot/anchor/?ballot_id=<?php echo $item['ballot_id']?>&ballot_name=<?php echo $item['ballot_name']?>">
-                                <button type="button" name="button-anchor" class="btn green mini button-anchor"
-                                        data-ballot_id="<?php echo $item['ballot_id']?>"
-                                ><i class="icon-pencil"></i> 管理活动主播</button>
+                            <a href="/ballot/anchor/?ballot_id=<?php echo $item['ballot_id']?>&ballot_name=<?php echo $item['ballot_name']?>" class="btn green mini button-anchor">
+                                <i class="icon-pencil"></i> 管理主播
                             </a>
 
                             <?php if($item['status'] == 1):?>
@@ -68,6 +66,8 @@
                             <?php else:?>
                                 <button type="button" name="button-unlock" class="btn blue mini button-status" data-status="1" data-ballot_id="<?php echo $item['ballot_id']?>"><i class="icon-unlock"></i> 解冻</button>
                             <?php endif;?>
+                            
+                            <a href="/ballot/prize/?ballot_id=<?php echo $item['ballot_id']?>" class="btn mini red"><i class="icon-trophy"></i> 奖项设置</a>
                         </td>
                     </tr>
                 <?php endforeach;?>

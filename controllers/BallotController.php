@@ -81,6 +81,37 @@ class BallotController extends BaseController {
         return $this->render('ballotAnchor', $renderArgs);
     }
     /**
+     * 活动奖项设置页面
+     * @return Ambigous <string, string>
+     */
+    public function actionPrize() {
+        $this->js[] = "/js/ballot/prize.js";
+        $this->js[] = "http://jssdk.demo.qiniu.io/bower_components/plupload/js/moxie.js";
+        $this->js[] = "http://jssdk.demo.qiniu.io/bower_components/plupload/js/plupload.min.js";
+        $this->js[] = "http://jssdk.demo.qiniu.io/bower_components/plupload/js/i18n/zh_CN.js";
+        $this->js[] = "/js/common/qiniu.js";
+        $this->css[] = "/media/css/DT_bootstrap.css";
+        
+        $renderArgs = [];
+        // 处理传入参数
+        $rule = [
+            'ballot_id'  => ['type'=>'int', 'required'=>true],
+        ];
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        
+        // 获取本活动的奖项设置信息
+        $res = Yii::$app->api->get('ballot-prize/search', $args);
+        if($res['code'] != 200) {
+            $renderArgs['error'] = $res['message'];
+            return $this->render('/site/error', $renderArgs);
+        }
+        
+        $renderArgs['ballot_id'] = $args['ballot_id'];
+        $renderArgs['prizes'] = $res['data'];
+        
+        return $this->render('prize', $renderArgs);
+    }
+    /**
      * Ajax请求处理
      */
     public function actionAjax() {
@@ -169,6 +200,44 @@ class BallotController extends BaseController {
                 ];
                 $args = $this->getRequestData($rule, Yii::$app->request->get());
                 $res = Yii::$app->api->get('ballot/ballot-add-anchor',$args);
+                if($res['code'] == 200) {
+                    $json = ['status'=>'success', 'message'=>$res['message'],'data'=>$res['data']];
+                } else {
+                    $json = ['status'=>'fail', 'message'=>$res['message']];
+                }
+                exit(Json::encode($json));
+                break;
+            // 添加活动奖项设置    
+            case 'createPrize':
+                $rule = [
+                    'level' => ['type'=>'string', 'required'=>true],
+                    'title' => ['type'=>'string', 'required'=>true],
+                    'ballot_id' => ['type'=>'int', 'required'=>true],
+                    'sort' => ['type'=>'int', 'required'=>true],
+                    'logo' => ['type'=>'string', 'required'=>true],
+                    'image' => ['type'=>'string', 'required'=>true],
+                ];
+                $args = $this->getRequestData($rule, Yii::$app->request->post());
+                $res = Yii::$app->api->post('ballot-prize/create', $args);
+                if($res['code'] == 200) {
+                    $json = ['status'=>'success', 'message'=>$res['message'],'data'=>$res['data']];
+                } else {
+                    $json = ['status'=>'fail', 'message'=>$res['message']];
+                }
+                exit(Json::encode($json));
+                break;
+            // 添加活动奖项设置
+            case 'updatePrize':
+                $rule = [
+                    'prize_id' => ['type'=>'int', 'required'=>true],
+                    'level' => ['type'=>'string', 'required'=>true],
+                    'title' => ['type'=>'string', 'required'=>true],
+                    'sort' => ['type'=>'int', 'required'=>true],
+                    'logo' => ['type'=>'string', 'required'=>true],
+                    'image' => ['type'=>'string', 'required'=>true],
+                ];
+                $args = $this->getRequestData($rule, Yii::$app->request->post());
+                $res = Yii::$app->request->post('ballot-prize/update', $args);
                 if($res['code'] == 200) {
                     $json = ['status'=>'success', 'message'=>$res['message'],'data'=>$res['data']];
                 } else {
