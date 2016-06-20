@@ -50,7 +50,7 @@
                             <?php endif;?>
                         </td>
                         <td>
-                            <h4><?php echo isset($item['wx_name']) ? $item['wx_name'] : '';?></h4>
+                            <h4><?php echo isset($item['anchor_name']) ? $item['anchor_name'] : '';?></h4>
                             <p>
                             <span class="label label-gray">主播ID:</span>
                             <?php echo $item['anchor_id']?>
