@@ -113,20 +113,32 @@
         </div>
         <div class="control-group">
             <label class="control-label">主播头像：</label>
-            <div class="controls">
-                <input type="text" class="m-wrap anchor-thumb" placeholder="" value="" />
+            <div class="controls" id="container_thumb">
+                <img src="" width="200" class="thumb" style="display:none;" />
+                <input type="hidden" class="anchor-thumb" value="" />
+                <p>
+                    <button type="button" id="btn_thumb" data-loading-text="上传中..." class="btn mini green">上传图片</button>
+                </p>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">宣传底图：</label>
-            <div class="controls">
-                <input type="text" class="m-wrap anchor-backimage" placeholder="" value="" />
+            <div class="controls" id="container_backimage">
+                <img src="" width="200" class="backimage" style="display:none;" />
+                <input type="hidden" class="anchor-backimage" value="" />
+                <p>
+                    <button type="button" id="btn_backimage" data-loading-text="上传中..." class="btn mini green">上传图片</button>
+                </p>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">微信二维码名片地址：</label>
-            <div class="controls">
-                <input type="text" class="m-wrap anchor-qrcode" placeholder="" value="" />
+            <div class="controls" id="container_qrcode">
+                <img src="" width="200" class="qrcode" style="display:none;" />
+                <input type="hidden" class="anchor-qrcode" value="" />
+                <p>
+                    <button type="button" id="btn_qrcode" data-loading-text="上传中..." class="btn mini green">上传图片</button>
+                </p>
             </div>
         </div>
         <div class="control-group">

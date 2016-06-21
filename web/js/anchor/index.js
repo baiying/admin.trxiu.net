@@ -13,6 +13,12 @@ $(".button-edit").click(function() {
     $("#anchor_id").val($(this).attr("data-anchor_id"));
     $("#editModal").find("h3").html('修改主播信息');
     $("#editModal").modal('show');
+    $(".thumb").attr("src", $(this).attr("data-thumb"));
+    $(".thumb").show();
+    $(".backimage").attr("src", $(this).attr("data-backimage"));
+    $(".backimage").show();
+    $(".qrcode").attr("src", $(this).attr("data-qrcode"));
+    $(".qrcode").show();
 });
 /**
  * 浮层提交按钮点击事件
@@ -66,3 +72,126 @@ function clearForm() {
         $(".anchor-broadcast").val('');
         $(".anchor-description").val('');
 }
+
+
+/**
+ * 上传图片
+ */
+$(function() {
+    var backimage_uploader = Qiniu.uploader({
+        runtimes: 'html5',
+        browse_button: 'btn_backimage',
+        container: 'container_backimage',
+        drop_element: 'container_backimage',
+        max_file_size: '2mb',
+        flash_swf_url: 'bower_components/plupload/js/Moxie.swf',
+        dragdrop: true,
+        chunk_size: '4mb',
+        multi_selection: true,
+        uptoken_url: '/qiniu/ajax/?act=token',
+        domain: 'http://o8syigvwe.bkt.clouddn.com/',
+        get_new_uptoken: false,
+        unique_names: true,
+        auto_start: true,
+        log_level: 5,
+        init: {
+            // 添加文件时的触发事件
+            'FilesAdded': function(up, files) {
+                $("#btn_backimage").button("loading");
+                $(".anchor-backimage").val("");
+            },
+            // 上传结束后触发事件
+            'FileUploaded': function(up, file, info) {
+                $("#btn_backimage").button("reset");
+                var res = $.parseJSON(info);
+                var domain = up.getOption('domain');
+                var imgurl = domain + encodeURI(res.key);
+                $(".backimage").attr("src", imgurl);
+                $(".backimage").show();
+                $(".anchor-backimage").val(imgurl);
+            },
+            // 异常事件
+            'Error': function(up, err, errTip) {
+                $("#pickfiles").button("reset");
+            }
+        }
+    });
+    var thumb_uploader = Qiniu.uploader({
+        runtimes: 'html5',
+        browse_button: 'btn_thumb',
+        container: 'container_thumb',
+        drop_element: 'container_thumb',
+        max_file_size: '2mb',
+        flash_swf_url: 'bower_components/plupload/js/Moxie.swf',
+        dragdrop: true,
+        chunk_size: '4mb',
+        multi_selection: true,
+        uptoken_url: '/qiniu/ajax/?act=token',
+        domain: 'http://o8syigvwe.bkt.clouddn.com/',
+        get_new_uptoken: false,
+        unique_names: true,
+        auto_start: true,
+        log_level: 5,
+        init: {
+            // 添加文件时的触发事件
+            'FilesAdded': function(up, files) {
+                $("#pickfiles").button("loading");
+                $(".anchor-thumb").val("");
+            },
+            // 上传结束后触发事件
+            'FileUploaded': function(up, file, info) {
+                $("#btn_thumb").button("reset");
+                var res = $.parseJSON(info);
+                var domain = up.getOption('domain');
+                var imgurl = domain + encodeURI(res.key);
+                $(".thumb").attr("src", imgurl);
+                $(".thumb").show();
+                $(".anchor-thumb").val(imgurl);
+            },
+            // 异常事件
+            'Error': function(up, err, errTip) {
+                $("#pickfiles").button("reset");
+            }
+        }
+    });
+    var QiniuQr = new QiniuJsSDK();
+    var qr_uploader = QiniuQr.uploader({
+        runtimes: 'html5',
+        browse_button: 'btn_qrcode',
+        container: 'container_qrcode',
+        drop_element: 'container_qrcode',
+        max_file_size: '2mb',
+        flash_swf_url: 'bower_components/plupload/js/Moxie.swf',
+        dragdrop: true,
+        chunk_size: '4mb',
+        multi_selection: true,
+        uptoken_url: '/qiniu/ajax/?act=token',
+        domain: 'http://o8syigvwe.bkt.clouddn.com/',
+        get_new_uptoken: false,
+        unique_names: true,
+        auto_start: true,
+        log_level: 5,
+        init: {
+            // 添加文件时的触发事件
+            'FilesAdded': function(up, files) {
+                $("#btn_qrcode").button("loading");
+                $(".anchor-qrcode").val("");
+            },
+            // 上传结束后触发事件
+            'FileUploaded': function(up, file, info) {
+                $("#btn_qrcode").button("reset");
+                var res = $.parseJSON(info);
+                var domain = up.getOption('domain');
+                var imgurl = domain + encodeURI(res.key);
+                $(".anchor-qrcode").val(imgurl);
+                $(".qrcode").attr("src", imgurl);
+                $(".qrcode").show();
+            },
+            // 异常事件
+            'Error': function(up, err, errTip) {
+                $("#btn_qrcode").button("reset");
+            }
+        }
+    });
+
+});
