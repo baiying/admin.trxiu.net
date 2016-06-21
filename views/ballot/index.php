@@ -57,17 +57,21 @@
                                     data-begin_time="<?php echo date("Y-m-d H:i:s", $item['begin_time'])?>"
                                     data-end_time="<?php echo date("Y-m-d H:i:s", $item['end_time'])?>"
                             ><i class="icon-pencil"></i> 编辑</button>
-                            <a href="/ballot/anchor/?ballot_id=<?php echo $item['ballot_id']?>&ballot_name=<?php echo $item['ballot_name']?>" class="btn green mini button-anchor">
-                                <i class="icon-pencil"></i> 管理主播
-                            </a>
-
-                            <?php if($item['status'] == 1):?>
-                                <button type="button" name="button-lock" class="btn red mini button-status" data-status="2" data-ballot_id="<?php echo $item['ballot_id']?>"><i class="icon-lock"></i> 冻结</button>
-                            <?php else:?>
-                                <button type="button" name="button-unlock" class="btn blue mini button-status" data-status="1" data-ballot_id="<?php echo $item['ballot_id']?>"><i class="icon-unlock"></i> 解冻</button>
-                            <?php endif;?>
                             
-                            <a href="/ballot/prize/?ballot_id=<?php echo $item['ballot_id']?>" class="btn mini red"><i class="icon-trophy"></i> 奖项设置</a>
+                            <div class="btn-group">
+								<a class="btn green mini" href="#" data-toggle="dropdown">其他
+								<i class="icon-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="/ballot/anchor/?ballot_id=<?php echo $item['ballot_id']?>&ballot_name=<?php echo $item['ballot_name']?>"><i class="icon-user"></i> 管理主播</a></li>
+									<?php if($item['status'] == 1):?>
+									<li><a href="javascript:;" class="button-status" data-status="2" data-ballot_id="<?php echo $item['ballot_id']?>"><i class="icon-lock"></i> 冻结</a></li>
+									<?php else:?>
+									<li><a href="javascript:;" class="button-status" data-status="1" data-ballot_id="<?php echo $item['ballot_id']?>"><i class="icon-unlock"></i> 解冻</a></li>
+									<?php endif;?>
+									<li><a href="/ballot/prize/?ballot_id=<?php echo $item['ballot_id']?>"><i class="icon-trophy"></i> 奖项设置</a></li>
+								</ul>
+							</div>
                         </td>
                     </tr>
                 <?php endforeach;?>

@@ -105,14 +105,28 @@ use yii\helpers\Html;
                     </a>
                     <ul class="sub-menu">
                         <li class="">
-                            <a href="/anchor/index/">主播管理</a>
-                        </li>
-                        <li class="">
                             <a href="/ballot/index/">活动管理</a>
                         </li>
                     </ul>
                 </li>
+                
                 <li class="">
+                    <a href="javascript:;">
+                        <i class="icon-group"></i> 
+                        <span class="title">用户管理</span>
+                        <span class="arrow active"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="">
+                            <a href="/anchor/index/">主播管理</a>
+                        </li>
+                        <li class="">
+                            <a href="/fans/index/">用户管理</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="" style="display: none;">
                     <a href="javascript:;">
                         <i class="icon-yen"></i> 
                         <span class="title">财务管理</span>
@@ -138,7 +152,7 @@ use yii\helpers\Html;
                             <a href="/system/manager/">账号管理</a>
                         </li>
                         <li class="">
-                            <a href="/fans/index/">用户管理</a>
+                            <a href="/system/setting/">系统设置</a>
                         </li>
                     </ul>
                 </li>
