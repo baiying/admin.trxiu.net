@@ -53,9 +53,9 @@
                         <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['broadcast']?></p></td>
                         <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['description']?></p></td>
                         <td>
-                            <button type="button" name="button-edit" class="btn green mini button-edit"
+                            <button type="button" name="button-edit" class="btn red mini button-remove"
                                     data-ballot_anchor_id="<?php echo $item['ballot_anchor_id']?>"
-                            ><i class="icon-pencil"></i> 编辑</button>
+                            ><i class="icon-remove"></i> 退赛</button>
                         </td>
                     </tr>
                 <?php endforeach;?>
