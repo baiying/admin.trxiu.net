@@ -46,11 +46,29 @@
                         <td><?php echo $item['anchor_id']?></td>
                         <td><?php echo $item['Information']['anchor_name']?></td>
                         <td><?php echo $item['votes']?></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['thumb']?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['backimage']?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['qrcode']?></p></td>
+                        <td>
+                            <?php if(isset($item['Information']['thumb']) && $item['Information']['thumb'] != ""):?>
+                                <img width="80" src="<?php echo $item['Information']['thumb']?>" />
+                            <?php else:?>
+                                <?php echo "无"?>
+                            <?php endif;?>
+                        </td>
+                        <td>
+                            <?php if($item['Information']['backimage'] != ""):?>
+                                <img width="80" src="<?php echo $item['Information']['backimage']?>" />
+                            <?php else:?>
+                                <?php echo "无"?>
+                            <?php endif;?>
+                        </td>
+                        <td>
+                            <?php if($item['Information']['qrcode'] != ""):?>
+                                <img width="80" src="<?php echo $item['Information']['qrcode']?>" />
+                            <?php else:?>
+                                <?php echo "无"?>
+                            <?php endif;?>
+                        </td>
                         <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['platform']?></p></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['broadcast']?></p></td>
+                        <td><a href="<?php echo $item['Information']['broadcast']?>" target="_blank">前往直播间</a></td>
                         <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['description']?></p></td>
                         <td>
                             <button type="button" name="button-edit" class="btn red mini button-remove"
