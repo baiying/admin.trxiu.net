@@ -73,6 +73,8 @@
                         <td>
                             <button type="button" name="button-edit" class="btn red mini button-remove"
                                     data-ballot_anchor_id="<?php echo $item['ballot_anchor_id']?>"
+                                    data-ballot_id="<?php echo $item['ballot_id']?>"
+                                    data-anchor_id="<?php echo $item['anchor_id']?>"
                             ><i class="icon-remove"></i> 退赛</button>
                         </td>
                     </tr>

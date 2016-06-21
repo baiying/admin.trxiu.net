@@ -62,3 +62,33 @@ $(".button-confirm").click(function() {
         }
     });
 });
+/**
+ * 主播退赛
+ */
+$(".button-remove").click(function() {
+    var btn = $(this);
+    var anchor = {
+        anchor_id : $(this).attr('data-anchor_id'),
+        ballot_id : $(this).attr('data-ballot_id')
+    };
+    $.ajax({
+        url: "/ballot/ajax/?act=remove",
+        type: 'get',
+        dataType: 'json',
+        data: anchor,
+        beforeSend: function() {
+            btn.button('loading');
+        },
+        success: function(json) {
+            if(json.status == 'success') {
+                location.reload(true);
+                return true;
+            } else {
+                $("#editModal").find(".alert-error").find("span").html(json.message);
+                $("#editModal").find(".alert-error").show();
+                btn.button('reset');
+                return false;
+            }
+        }
+    });
+});

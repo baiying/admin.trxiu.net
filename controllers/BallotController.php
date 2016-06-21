@@ -259,6 +259,21 @@ class BallotController extends BaseController {
                 }
                 exit(Json::encode($json));
                 break;
+            // 主播退赛
+            case 'remove':
+                $rule = [
+                    'anchor_id' => ['type'=>'int', 'required'=>true],
+                    'ballot_id' => ['type'=>'int', 'required'=>true],
+                ];
+                $args = $this->getRequestData($rule, Yii::$app->request->get());
+                $res = Yii::$app->api->get('ballot/ballot-del-anchor',$args);
+                if($res['code'] == 200) {
+                    $json = ['status'=>'success', 'message'=>$res['message'],'data'=>$res['data']];
+                } else {
+                    $json = ['status'=>'fail', 'message'=>$res['message']];
+                }
+                exit(Json::encode($json));
+                break;
         }
     }
 
