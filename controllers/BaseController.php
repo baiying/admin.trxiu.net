@@ -53,7 +53,7 @@ class BaseController extends Controller {
         $result = array();
         foreach($rule as $key=>$value) {
             if(!isset($data[$key]) && isset($value['required']) && $value['required'] == TRUE) {
-                $this->renderJson(ApiCode::ERROR_API_DENY, 'Lost parameter: '.$key);
+                exit(json_encode(['status'=>'fail', 'message'=>'Lost parameter: '.$key]));
             }
             switch($value['type']) {
                 case 'int':
