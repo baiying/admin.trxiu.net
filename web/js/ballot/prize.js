@@ -65,7 +65,9 @@ $(".button-confirm").click(function() {
 		}
 	});
 });
-
+/**
+ * 奖项编辑按钮点击事件
+ */
 $(".button-edit").click(function() {
 	var prizeId = $(this).attr("data-prize-id");
 	var level = $(this).attr("data-level");
@@ -74,6 +76,39 @@ $(".button-edit").click(function() {
 	var logo = $(this).attr("data-logo");
 	var image = $(this).attr("data-image");
 	
+	$("#editModal").find("h3").html("编辑奖项设置");
+	$(".data-level").val(level);
+	$(".data-title").val(title);
+	$(".data-sort").val(sort);
+	$(".data-logo").val(logo);
+	$(".review_logo").attr("src", logo);
+	$(".review_logo").show();
+	$(".data-image").val(image);
+	$(".review_image").attr("src", image);
+	$(".review_image").show();
+	$("#prize_id").val(prizeId);
+	$("#editModal").modal('show');
+	
+});
+
+$(".button-delete").click(function() {
+	if(!confirm('确定要删除该奖品吗？')) return false;
+	var prizeId = $(this).attr('data-prize-id');
+	$.ajax({
+		url: "/ballot/ajax/?act=deletePrize",
+		type: 'post',
+		dataType: 'json',
+		data: {prize_id: prizeId},
+		success: function(json) {
+			if(json.status == 'success') {
+				location.reload(true);
+				return true;
+			} else {
+				alert(json.message);
+				return false;
+			}
+		}
+	});
 });
 /**
  * 上传图片

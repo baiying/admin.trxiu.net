@@ -65,6 +65,8 @@
                                     data-image="<?php echo $item['image']?>"
                                     data-sort="<?php echo $item['sort']?>"
                             ><i class="icon-pencil"></i> 编辑</button>
+                            <button type="button" class="btn red mini button-delete" data-prize-id="<?php echo $item['prize_id']?>">
+                            <i class="icon-trash"></i> 删除</button>
                         </td>
                     </tr>
                 <?php endforeach;?>

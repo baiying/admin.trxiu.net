@@ -237,7 +237,21 @@ class BallotController extends BaseController {
                     'image' => ['type'=>'string', 'required'=>true],
                 ];
                 $args = $this->getRequestData($rule, Yii::$app->request->post());
-                $res = Yii::$app->request->post('ballot-prize/update', $args);
+                $res = Yii::$app->api->post('ballot-prize/update', $args);
+                if($res['code'] == 200) {
+                    $json = ['status'=>'success', 'message'=>$res['message'],'data'=>$res['data']];
+                } else {
+                    $json = ['status'=>'fail', 'message'=>$res['message']];
+                }
+                exit(Json::encode($json));
+                break;
+                
+            case 'deletePrize':
+                $rule = [
+                    'prize_id' => ['type'=>'int', 'required'=>true],
+                ];
+                $args = $this->getRequestData($rule, Yii::$app->request->post());
+                $res = Yii::$app->api->post('ballot-prize/delete', $args);
                 if($res['code'] == 200) {
                     $json = ['status'=>'success', 'message'=>$res['message'],'data'=>$res['data']];
                 } else {
