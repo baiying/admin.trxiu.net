@@ -87,4 +87,50 @@ class Utils extends Component {
             return $ShowHtml;
         }
     }
+    /**
+     * 将时间戳转换为易于理解的文字描述
+     * @param unknown $timer
+     * @return string
+     */
+    public function formatTime($timer) {
+        $str = '';
+        $diff = time() - $timer;
+        $day = floor($diff / 86400);
+        $free = $diff % 86400;
+        if($day > 0) {
+            if($day == 1) {
+                return "昨天";
+            } elseif($day == 2) {
+                return "前天";
+            } else {
+                return date("Y-m-d", $timer);
+            }
+        }else{
+            if($free>0){
+                $hour = floor($free / 3600);
+                $free = $free % 3600;
+                if($hour>0){
+                    return $hour."小时前";
+                }else{
+                    if($free>0){
+                        $min = floor($free / 60);
+                        $free = $free % 60;
+                        if($min>0){
+                            return $min."分钟前";
+                        }else{
+                            if($free>0){
+                                return $free."秒前";
+                            }else{
+                                return '刚刚';
+                            }
+                        }
+                    }else{
+                        return '刚刚';
+                    }
+                }
+            }else{
+                return '刚刚';
+            }
+        }
+    }
 }

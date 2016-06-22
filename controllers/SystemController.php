@@ -116,9 +116,9 @@ class SystemController extends BaseController {
                 
             case 'editSetting':
                 $args = [];
-                $args['fee'] = floatval(Yii::$app->request->post('fee'));
-                $args['rule_vote'] = Yii::$app->request->post('rule_vote');
-                $args['rule_red'] = Yii::$app->request->post('rule_red');
+                Yii::$app->request->post('fee') && $args['fee'] = floatval(Yii::$app->request->post('fee'));
+                Yii::$app->request->post('rule_vote') && $args['rule_vote'] = Yii::$app->request->post('rule_vote');
+                Yii::$app->request->post('rule_red') && $args['rule_red'] = Yii::$app->request->post('rule_red');
                 $res = Yii::$app->api->post('setting/update', $args);
                 if($res['code'] == 200) {
                     $json = ['status'=>'success', 'message'=>$res['message'], 'data'=>$res['data']];

@@ -25,7 +25,7 @@
                 <th>描述</th>
                 <th width="80">注册时间</th>
                 <th width="80">最后登录</th>
-                <th class="span2">操作</th>
+                <th width="150">操作</th>
             </tr>
             </thead>
             <?php if(!empty($anchor)):?>
@@ -72,6 +72,15 @@
                                     data-broadcast="<?php echo $item['broadcast']?>"
                                     data-description="<?php echo $item['description']?>"
                             ><i class="icon-pencil"></i> 编辑</button>
+                            
+                            <div class="btn-group">
+								<a class="btn green mini" href="#" data-toggle="dropdown">其他
+								<i class="icon-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="/anchor/news/?anchor_id=<?php echo $item['anchor_id']?>"><i class="icon-bullhorn"></i> 主播动态</a></li>
+								</ul>
+							</div>
                         </td>
                     </tr>
                 <?php endforeach;?>
