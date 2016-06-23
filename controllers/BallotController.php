@@ -274,6 +274,21 @@ class BallotController extends BaseController {
                 }
                 exit(Json::encode($json));
                 break;
+            // 修正主播票数
+            case 'votes_amend':
+                $rule = [
+                    'ballot_anchor_id' => ['type'=>'int', 'required'=>true],
+                    'amend_num' => ['type'=>'int', 'required'=>true],
+                ];
+                $args = $this->getRequestData($rule, Yii::$app->request->get());
+                $res = Yii::$app->api->get('ballot/up-votes-amend',$args);
+                if($res['code'] == 200) {
+                    $json = ['status'=>'success', 'message'=>$res['message'],'data'=>$res['data']];
+                } else {
+                    $json = ['status'=>'fail', 'message'=>$res['message']];
+                }
+                exit(Json::encode($json));
+                break;
         }
     }
 

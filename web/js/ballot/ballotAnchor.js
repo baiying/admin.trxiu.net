@@ -92,3 +92,45 @@ $(".button-remove").click(function() {
         }
     });
 });
+
+/**
+ * 修正主播票数
+ */
+$(".votes_amend").click(function() {
+    $(".votes-edit-votes_total").val($(this).attr("data-votes_total"));
+    $(".votes-edit-votes").val($(this).attr("data-votes"));
+    $(".votes-edit-votes_amend").val($(this).attr("data-votes_amend"));
+    $("#ballot_anchor_id").val($(this).attr("data-ballot_anchor_id"));
+    $("#votes-edit").find("h3").html('修改票数修正值');
+    $("#votes-edit").modal('show');
+});
+/**
+ * 修正票数提交事件
+ */
+$(".button-votes_amend").click(function() {
+    var btn = $(this);
+    var votes_amend = {
+        ballot_anchor_id : $("#ballot_anchor_id").val(),
+        amend_num : $(".votes-edit-votes_amend").val()
+    };
+    $.ajax({
+        url: "/ballot/ajax/?act=votes_amend",
+        type: 'get',
+        dataType: 'json',
+        data: votes_amend,
+        beforeSend: function() {
+            btn.button('loading');
+        },
+        success: function(json) {
+            if(json.status == 'success') {
+                location.reload(true);
+                return true;
+            } else {
+                $("#votes-edit").find(".alert-error").find("span").html(json.message);
+                $("#votes-edit").find(".alert-error").show();
+                btn.button('reset');
+                return false;
+            }
+        }
+    });
+});

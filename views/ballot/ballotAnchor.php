@@ -1,3 +1,4 @@
+
 <div class="container-fluid">
     <h3>活动管理</h3>
     <ul class="breadcrumb">
@@ -21,12 +22,12 @@
         <table class="table table-striped table-bordered table-hover dataTable">
             <thead>
             <tr>
-                <th width="25">
-                    <input type="checkbox" class="group-checkable checkall" data-set="#sample_1 .checkboxes">
-                </th>
+                <th width="70px">活动主播关联ID</th>
                 <th>主播ID</th>
                 <th>主播昵称</th>
                 <th>得票数</th>
+                <th>票数修正值</th>
+                <th>票数总计</th>
                 <th>主播头像地址</th>
                 <th>宣传底图</th>
                 <th>微信二维码名片地址</th>
@@ -40,37 +41,44 @@
                 <tbody>
                 <?php foreach($ballotAnchor as $item):?>
                     <tr>
-                        <td>
-                            <input type="checkbox" class="group-checkable checkitem" value="<?php echo $item['ballot_anchor_id']?>" />
+                        <td style="text-align: center;"><?php echo $item['ballot_anchor_id']?></td>
+                        <td style="text-align: center;"><?php echo $item['anchor_id']?></td>
+                        <td style="text-align: center;"><?php echo $item['Information']['anchor_name']?></td>
+                        <td style="text-align: center;"><?php echo $item['votes']?></td>
+                        <td style="text-align: center;"><?php echo $item['votes_amend']?>
+                            <button type="button" name="votes_amend" class="btn white mini votes_amend"
+                                    data-ballot_anchor_id="<?php echo $item['ballot_anchor_id']?>"
+                                    data-votes="<?php echo $item['votes']?>"
+                                    data-votes_amend="<?php echo $item['votes_amend']?>"
+                                    data-votes_total="<?php echo $item['votes_total']?>"
+                            ><i class="icon-pencil"></i></button>
                         </td>
-                        <td><?php echo $item['anchor_id']?></td>
-                        <td><?php echo $item['Information']['anchor_name']?></td>
-                        <td><?php echo $item['votes']?></td>
-                        <td>
+                        <td style="text-align: center;"><?php echo $item['votes_total']?></td>
+                        <td style="text-align: center;">
                             <?php if(isset($item['Information']['thumb']) && $item['Information']['thumb'] != ""):?>
                                 <img width="80" src="<?php echo $item['Information']['thumb']?>" />
                             <?php else:?>
                                 <?php echo "无"?>
                             <?php endif;?>
                         </td>
-                        <td>
+                        <td style="text-align: center;">
                             <?php if($item['Information']['backimage'] != ""):?>
                                 <img width="80" src="<?php echo $item['Information']['backimage']?>" />
                             <?php else:?>
                                 <?php echo "无"?>
                             <?php endif;?>
                         </td>
-                        <td>
+                        <td style="text-align: center;">
                             <?php if($item['Information']['qrcode'] != ""):?>
                                 <img width="80" src="<?php echo $item['Information']['qrcode']?>" />
                             <?php else:?>
                                 <?php echo "无"?>
                             <?php endif;?>
                         </td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['platform']?></p></td>
-                        <td><a href="<?php echo $item['Information']['broadcast']?>" target="_blank">前往直播间</a></td>
-                        <td><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['description']?></p></td>
-                        <td>
+                        <td style="text-align: center;"><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['platform']?></p></td>
+                        <td style="text-align: center;"><a href="<?php echo $item['Information']['broadcast']?>" target="_blank">前往直播间</a></td>
+                        <td style="text-align: center;"><p style="width:80px;height:auto;white-space:nowrap;overflow-x:auto;"><?php echo $item['Information']['description']?></p></td>
+                        <td style="text-align: center;">
                             <button type="button" name="button-edit" class="btn red mini button-remove"
                                     data-ballot_anchor_id="<?php echo $item['ballot_anchor_id']?>"
                                     data-ballot_id="<?php echo $item['ballot_id']?>"
@@ -124,6 +132,44 @@
     </div>
 </div>
 
+
+
+<!-- 主播票数修正弹出层 -->
+<div id="votes-edit" class="modal hide fade in" tabindex="-1" data-width="760" aria-hidden="false">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h3></h3>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div class="alert alert-error hide">
+            <span></span>
+        </div>
+        <div class="control-group">
+            <label class="control-label">总票数：</label>
+            <div class="controls">
+                <input type="text" class="m-wrap votes-edit-votes_total" placeholder="" value="" disabled="disabled" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">粉丝投票数：</label>
+            <div class="controls">
+                <input type="text" class="m-wrap votes-edit-votes" placeholder="" value="" readonly="readonly" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">修正票数：</label>
+            <div class="controls">
+                <input type="text" class="m-wrap votes-edit-votes_amend" placeholder="" value="" />
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button"  class="btn blue button-votes_amend" data-loading-text="提交中..." data-ballot_id="<?php echo $item['ballot_anchor_id']?>">确定</button>
+        <button type="button" data-dismiss="modal" class="btn">取消</button>
+        <input type="hidden" id="ballot_anchor_id" value="" />
+    </div>
+</div>
 
 
 
