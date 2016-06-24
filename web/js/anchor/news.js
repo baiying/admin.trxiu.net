@@ -132,3 +132,65 @@ function checkImageCount() {
 	}
 	return true;
 }
+
+/**
+ * 删除主播动态
+ */
+$(".button-del").click(function() {
+	if(confirm('确认删除该动态并删除相关评论么?'))
+	{
+		var btn = $(this);
+		$.ajax({
+			url: "/anchor/ajax/?act=delNews",
+			type: 'post',
+			dataType: 'json',
+			data: {anchor_id: $(this).attr("data-anchor_id"), news_id: $(this).attr("data-news_id")},
+			beforeSend: function() {
+				btn.button("loading");
+			},
+			success: function(json) {
+				btn.button("reset");
+				if(json.status == 'success') {
+					alert(json.message);
+					location.reload(true);
+				} else {
+					alert(json.message);
+					return false;
+				}
+			}
+		});
+		return true;
+	}
+});
+
+
+
+/**
+ * 删除主播动态
+ */
+$(".button-comment_del").click(function() {
+	if(confirm('确认删除评论么?删除后无法恢复！'))
+	{
+		var btn = $(this);
+		$.ajax({
+			url: "/anchor/ajax/?act=denNewsComment",
+			type: 'post',
+			dataType: 'json',
+			data: {comment_id: $(this).attr("data-comment_id"), fans_id: $(this).attr("data-fans_id")},
+			beforeSend: function() {
+				btn.button("loading");
+			},
+			success: function(json) {
+				btn.button("reset");
+				if(json.status == 'success') {
+					alert(json.message);
+					location.reload(true);
+				} else {
+					alert(json.message);
+					return false;
+				}
+			}
+		});
+		return true;
+	}
+});
