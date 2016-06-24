@@ -26,7 +26,18 @@
                 	<img alt="" src="<?php echo $anchor['thumb']?>" class="media-object">
                 	</a>
                 	<div class="media-body">
-                		<h4 class="media-heading"><?php echo $anchor['anchor_name']?> <span><?php echo Yii::$app->utils->formatTime($item['create_time'])?> / <a href="javascript:;" class="button-edit" data-news-id="<?php echo $item['news_id']?>">编辑</a></span></h4>
+                		<h4 class="media-heading"><?php echo $anchor['anchor_name']?>
+                            <span><?php echo Yii::$app->utils->formatTime($item['create_time'])?>
+                                /
+                                <a href="javascript:;" class="button-edit" data-news-id="<?php echo $item['news_id']?>">
+                                    编辑
+                                </a>
+                                /
+                                <a href="javascript:;" class="button-del" data-news_id="<?php echo $item['news_id']?>" data-anchor_id="<?php echo $item['anchor_id']?>">
+                                    删除
+                                </a>
+                            </span>
+                        </h4>
                 		<p class="content"><?php echo $item['content']?></p>
                 		<?php if($item['images'] != ""):?>
                 		<ul class="unstyled blog-images">
@@ -43,7 +54,16 @@
                 			<img alt="" src="<?php echo $cmt['fans']['wx_thumb']?>" class="media-object">
                 			</a>
                 			<div class="media-body">
-                				<h4 class="media-heading"><?php echo $cmt['fans']['wx_name']?> <span><?php echo Yii::$app->utils->formatTime($cmt['create_time'])?></span></h4>
+                				<h4 class="media-heading">
+                                    <?php echo $cmt['fans']['wx_name']?>
+                                    <span>
+                                        <?php echo Yii::$app->utils->formatTime($cmt['create_time'])?>
+                                        /
+                                        <a href="javascript:;" class="button-comment_del" data-comment_id="<?php echo $cmt['comment_id']?>" data-fans_id="<?php echo $cmt['fans_id']?>">
+                                            删除
+                                        </a>
+                                    </span>
+                                </h4>
                 				<p><?php echo $cmt['content']?></p>
                 			</div>
                 		</div>

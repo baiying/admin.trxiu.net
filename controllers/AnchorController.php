@@ -144,6 +144,36 @@ class AnchorController extends BaseController {
                 }
                 exit(Json::encode($json));
                 break;
+            // 删除主播动态
+            case 'delNews':
+                $rule = [
+                    'news_id' => ['type' => 'int', 'required' => true],
+                    'anchor_id'   => ['type' => 'int', 'required' => true],
+                ];
+                $args = $this->getRequestData($rule, Yii::$app->request->post());
+                $res = Yii::$app->api->post('news/del-news', $args);
+                if ($res['code'] == 200) {
+                    $json = ['status' => 'success', 'message' => $res['message']];
+                } else {
+                    $json = ['status' => 'fail', 'message' => $res['message']];
+                }
+                exit(Json::encode($json));
+                break;
+            // 删除动态评论
+            case 'denNewsComment':
+                $rule = [
+                    'comment_id' => ['type' => 'int', 'required' => true],
+                    'fans_id'   => ['type' => 'int', 'required' => true],
+                ];
+                $args = $this->getRequestData($rule, Yii::$app->request->post());
+                $res = Yii::$app->api->post('news/del-news-comment', $args);
+                if ($res['code'] == 200) {
+                    $json = ['status' => 'success', 'message' => $res['message']];
+                } else {
+                    $json = ['status' => 'fail', 'message' => $res['message']];
+                }
+                exit(Json::encode($json));
+                break;
         }
     }
 
