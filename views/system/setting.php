@@ -22,7 +22,7 @@
             <tbody>
                 <tr>
                     <td>红包手续费</td>
-                    <td><?php echo $setting['fee']?>%</td>
+                    <td><?php echo $setting['fee'] * 100?>%</td>
                     <td>
                         <button type="button" class="btn mini green button-edit-fee"><i class="icon-pencil"></i> 修改</button>
                     </td>

@@ -28,7 +28,7 @@
                 	<div class="media-body">
                 		<h4 class="media-heading"><?php echo $anchor['anchor_name']?> <span><?php echo Yii::$app->utils->formatTime($item['create_time'])?> / <a href="javascript:;" class="button-edit" data-news-id="<?php echo $item['news_id']?>">编辑</a></span></h4>
                 		<p class="content"><?php echo $item['content']?></p>
-                		<?php if($item['images'] != ""):?>
+                		<?php if(!empty($item['images'])):?>
                 		<ul class="unstyled blog-images">
                 		    <?php foreach(json_decode($item['images'], true) as $img):?>
             				<li ><a href="<?php echo $img?>" target="_blank"><img alt="" src="<?php echo $img?>"></a></li>
