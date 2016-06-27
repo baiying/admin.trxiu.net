@@ -104,7 +104,7 @@ $(function() {
         container: 'container',
         drop_element: 'container',
         max_file_size: '2mb',
-        flash_swf_url: 'bower_components/plupload/js/Moxie.swf',
+        flash_swf_url: '/media/Moxie.swf',
         dragdrop: true,
         chunk_size: '4mb',
         multi_selection: true,

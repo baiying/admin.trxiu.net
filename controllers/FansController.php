@@ -12,13 +12,11 @@ class FansController extends BaseController {
     public $layout = "main";
 
     public function actionIndex() {
-        $this->js[] = "/js/fans/index.js";
         $this->js[] = "http://jssdk.demo.qiniu.io/bower_components/plupload/js/moxie.js";
-        $this->js[] = "http://jssdk.demo.qiniu.io/bower_components/plupload/js/plupload.min.js";
-        $this->js[] = "http://jssdk.demo.qiniu.io/bower_components/plupload/js/i18n/zh_CN.js";
-        $this->js[] = "/js/common/qiniu.js";
+        $this->js[] = "http://jssdk.demo.qiniu.io/bower_components/plupload/js/plupload.dev.js";
+        $this->js[] = "http://jssdk.demo.qiniu.io/src/qiniu.js";
+        $this->js[] = "/js/fans/index.js";
         $this->css[] = "/media/css/DT_bootstrap.css";
-        $this->css[] = "/media/css/jquery.fileupload-ui.css";
 
         $renderArgs = [];
         // 处理传入参数
@@ -39,7 +37,6 @@ class FansController extends BaseController {
         // 生成翻页HTML
         $pageUrl = '/fans/index/?page=$page';
         $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $res['data']['pagecount']);
-//        echo json_encode($renderArgs);exit;
         return $this->render('index', $renderArgs);
     }
 
