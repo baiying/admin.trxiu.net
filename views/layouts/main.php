@@ -202,12 +202,12 @@ use yii\helpers\Html;
     <!-- END CORE PLUGINS -->
     
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="/media/js/app.js" type="text/javascript"></script>
     <?php if(!empty($this->context->js)):?>
     <?php   foreach($this->context->js as $js):?>
     <script src="<?php echo $js?>" type="text/javascript" ></script>
     <?php   endforeach;?>
     <?php endif;?>
+    <script src="/media/js/app.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL SCRIPTS -->  
     <script>
         jQuery(document).ready(function() {    

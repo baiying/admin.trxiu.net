@@ -12,9 +12,9 @@ class FansController extends BaseController {
     public $layout = "main";
 
     public function actionIndex() {
-        $this->js[] = "http://jssdk.demo.qiniu.io/bower_components/plupload/js/moxie.js";
-        $this->js[] = "http://jssdk.demo.qiniu.io/bower_components/plupload/js/plupload.dev.js";
-        $this->js[] = "http://jssdk.demo.qiniu.io/src/qiniu.js";
+        $this->js[] = "/js/common/moxie.js";
+        $this->js[] = "/js/common/plupload.min.js";
+        $this->js[] = "/js/common/qiniu.js";
         $this->js[] = "/js/fans/index.js";
         $this->css[] = "/media/css/DT_bootstrap.css";
 
