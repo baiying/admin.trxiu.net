@@ -134,3 +134,10 @@ $(".button-votes_amend").click(function() {
         }
     });
 });
+
+$(".button-vote").click(function() {
+	var ballotId = $(this).attr('data-ballot-id');
+	var anchorId = $(this).attr('data-anchor-id');
+	location.href = "/ballot/anchor-vote/?ballot_id=" +　ballotId + "&anchor_id=" + anchorId;
+	return true;
+});

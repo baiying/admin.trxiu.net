@@ -84,6 +84,10 @@
                                     data-ballot_id="<?php echo $item['ballot_id']?>"
                                     data-anchor_id="<?php echo $item['anchor_id']?>"
                             ><i class="icon-remove"></i> 退赛</button>
+                            <button type="button" name="button-vote" class="btn green mini button-vote" 
+                                    data-ballot-id="<?php echo $item['ballot_id']?>"
+                                    data-anchor-id="<?php echo $item['anchor_id']?>"
+                            ><i class="icon-bar-chart"></i> 投票</button>
                         </td>
                     </tr>
                 <?php endforeach;?>

@@ -60,12 +60,10 @@ class BallotController extends BaseController {
             'size' => ['type'=>'int', 'default'=>5],
             'order' => ['type'=>'string', 'default'=>'manager_id DESC']
         ];
-//        echo json_encode($rule);exit;
         $args = $this->getRequestData($rule, Yii::$app->request->get());
 
         // 获取管理员账号信息
         $res = Yii::$app->api->get('ballot/get-ballot-detail', $args);
-//        echo json_encode($res);exit;
         if($res['code'] != 200) {
             $renderArgs['error'] = $res['message'];
             return $this->render('/site/error', $renderArgs);
@@ -73,12 +71,75 @@ class BallotController extends BaseController {
         // 将管理员列表数据放入renderArgs数组
         $renderArgs['ballotAnchor'] = $res['data']['anchorList'];
         $renderArgs['ballotId'] = $res['data']['ballot_id'];
-//        echo json_encode($renderArgs);exit;
-        // 生成翻页HTML
-//        $pageUrl = '/ballot/anchor/?page=$page';
-//        $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $res['data']['pagecount']);
 
         return $this->render('ballotAnchor', $renderArgs);
+    }
+    /**
+     * 主播投票详情页
+     */
+    public function actionAnchorVote() {
+        $renderArgs = [];
+        $rule = [
+            'ballot_id' => ['type'=>'int', 'required'=>true],
+            'anchor_id' => ['type'=>'int', 'required'=>true],
+            'type'      => ['type'=>'string', 'required'=>false, 'default'=>'free'],
+            'page'      => ['type'=>'int', 'required'=>false, 'default'=>1]
+        ];
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        $renderArgs = $args;
+        // 获取活动基本信息
+        $res = Yii::$app->api->get('ballot/info', $args);
+        if($res['code'] != 200) {
+            $this->errors[] = $res['message'];
+        }
+        if(empty($res['data'])) {
+            $this->errors[] = "未查找到活动信息";
+        }
+        if(!empty($this->errors)) {
+            return $this->render('/site/error', ['errors'=>$this->errors]);
+        }
+        $renderArgs['ballot'] = $res['data'];
+        
+        // 获取主播基本信息
+        $res = Yii::$app->api->get('anchor/get-anchor-information', $args);
+        if($res['code'] != 200) {
+            $this->errors[] = $res['message'];
+        }
+        if(empty($res['data'])) {
+            $this->errors[] = "未查找到主播信息";
+        }
+        if(!empty($this->errors)) {
+            return $this->render('/site/error', ['errors'=>$this->errors]);
+        }
+        $renderArgs['anchor'] = $res['data'];
+        
+        $pagesize = 20;
+        $count = 0;
+        if($args['type'] == 'free' || $args['type'] == 'pay') {
+            $res = $this->getAnchorVote($args['ballot_id'], $args['anchor_id'], $args['page'], $args['type']);
+            if(empty($res)) {
+                $renderArgs['votes'] = [];
+            } else {
+                $count = $res['count'];
+                $renderArgs['votes'] = $res['data'];
+            }
+            
+        } else {
+            $res = $this->getAnchorCanvass($args['ballot_id'], $args['anchor_id'], $args['page']);
+            if(empty($res)) {
+                $renderArgs['canvass'] = [];
+            } else {
+                $count = $res['count'];
+                $renderArgs['canvass'] = $res['data'];
+            }
+        }
+        
+        // 生成翻页HTML
+        if($count > 0) {
+            $pageUrl = '/ballot/anchor-vote/?ballot_id='.$args['ballot_id'].'&anchor_id='.$args['anchor_id'].'&type='.$args['type'].'&page=$page';
+            $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], ceil($count / $pagesize));
+        }
+        return $this->render('vote', $renderArgs);
     }
     /**
      * 活动奖项设置页面
@@ -291,5 +352,53 @@ class BallotController extends BaseController {
                 break;
         }
     }
-
+    /**
+     * getAnchorVote
+     * 获取粉丝投票明细
+     * @param number $ballotId  活动ID
+     * @param number $anchorId  主播ID
+     * @param number $page      页码
+     * @param string $type      投票类型，free 免费投票，pay 拉票投票
+     * @return multitype:|multitype:unknown
+     */
+    private function getAnchorVote($ballotId, $anchorId, $page = 1, $type = 'free') {
+        $res = Yii::$app->api->get('vote/search', [
+            'ballot_id' => $ballotId,
+            'anchor_id' => $anchorId,
+            'page'      => $page,
+            'type'      => $type
+        ]);
+        if($res['code'] != 200 || empty($res['data'])) {
+            return [];
+        } else {
+            return [
+                'count' => $res['count'],
+                'data'  => $res['data']
+            ];
+        }
+    }
+    /**
+     * getAnchorCanvass
+     * 获取为主播拉票的记录
+     * @param number $ballotId  活动ID
+     * @param number $anchorId  主播ID
+     * @param number $page      页码
+     * @param string $type      投票类型，free 免费投票，pay 拉票投票
+     * @return multitype:|multitype:unknown
+     */
+    private function getAnchorCanvass($ballotId, $anchorId, $page = 1) {
+        $res = Yii::$app->api->get('canvass/search', [
+            'ballot_id' => $ballotId,
+            'anchor_id' => $anchorId,
+            'page'      => $page
+        ]);
+        if($res['code'] != 200 || empty($res['data'])) {
+            return [];
+        } else {
+            return [
+                'count' => $res['count'],
+                'data'  => $res['data']
+            ];
+        }
+    }
 }
