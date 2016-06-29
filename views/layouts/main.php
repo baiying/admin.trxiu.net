@@ -154,6 +154,9 @@ use yii\helpers\Html;
                         <li class="">
                             <a href="/system/setting/">系统设置</a>
                         </li>
+                        <li class="">
+                            <a href="/message/index/">消息管理</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
