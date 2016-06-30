@@ -18,6 +18,7 @@ class BallotController extends BaseController {
         // 引入datetimepicker组件使用的样式文件及js脚本文件
         $this->css[] = "/media/css/datetimepicker.css";
         $this->js[] = "/media/js/bootstrap-datetimepicker.js";
+        $this->js[] = "/media/js/app.js";
         $this->js[] = "/js/ballot/index.js";
         $this->css[] = "/media/css/DT_bootstrap.css";
 
