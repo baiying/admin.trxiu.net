@@ -69,6 +69,30 @@ class MessageController extends BaseController
                 }
                 exit(Json::encode($json));
                 break;
+            case 'fansList' :
+                $res = Yii::$app->api->get('fans/get-fans-list',['all_list'=>'all']);
+                if($res['code'] == 200) {
+                    $json = ['status'=>'success', 'message'=>$res['message'],'data'=>$res['data']];
+                } else {
+                    $json = ['status'=>'fail', 'message'=>$res['message']];
+                }
+                exit(Json::encode($json));
+                break;
+            case 'addMessageMore':
+                $rule = [
+                    'fans_id_list' => ['type'=>'string', 'required'=>true],
+                    'send_fans_id' => ['type'=>'int', 'required'=>true],
+                    'content' => ['type'=>'string', 'required'=>true],
+                ];
+                $args = $this->getRequestData($rule, Yii::$app->request->post());
+                $res = Yii::$app->api->post('message/add-message-more', $args);
+                if($res['code'] == 200) {
+                    $json = ['status'=>'success', 'message'=>$res['message']];
+                } else {
+                    $json = ['status'=>'fail', 'message'=>$res['message']];
+                }
+                exit(Json::encode($json));
+                break;
         }
     }
 }
