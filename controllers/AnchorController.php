@@ -24,7 +24,7 @@ class AnchorController extends BaseController {
         // 处理传入参数
         $rule = [
             'page'      => ['type'=>'int', 'default'=>1],
-            'size'  => ['type'=>'int', 'default'=>5],
+            'size'  => ['type'=>'int', 'default'=>20],
             'order'     => ['type'=>'string', 'default'=>'manager_id DESC']
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->get());
@@ -58,7 +58,7 @@ class AnchorController extends BaseController {
         $rule = [
             'anchor_id' => ['type'=>'int', 'required'=>true],
             'page'      => ['type'=>'int', 'required'=>false, 'default'=>1],
-            'size'      => ['type'=>'int', 'required'=>false, 'default'=>5]
+            'size'      => ['type'=>'int', 'required'=>false, 'default'=>20]
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->get());
         $renderArgs = $args;

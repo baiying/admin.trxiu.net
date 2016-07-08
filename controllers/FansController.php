@@ -22,7 +22,7 @@ class FansController extends BaseController {
         // 处理传入参数
         $rule = [
             'page'=> ['type'=>'int', 'default'=>1],
-            'size'=> ['type'=>'int', 'default'=>5],
+            'size'=> ['type'=>'int', 'default'=>20],
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->get());
 
