@@ -20,4 +20,11 @@ class CrontabController extends Controller {
     public function actionSendRedPackage() {
         Yii::$app->api->get('canvass/send-red-package');
     }
+    /**
+     * send-cashback-red
+     * 发送拉票返现红包
+     */
+    public function actionSendCashbackRed() {
+        Yii::$app->api->get('canvass/send-cashback-red');
+    }
 }
