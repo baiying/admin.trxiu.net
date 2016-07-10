@@ -23,9 +23,9 @@ class AnchorController extends BaseController {
         $renderArgs = [];
         // 处理传入参数
         $rule = [
+            'name' => ['type'=>'string', 'required'=>false],
             'page'      => ['type'=>'int', 'default'=>1],
             'size'  => ['type'=>'int', 'default'=>20],
-            'order'     => ['type'=>'string', 'default'=>'manager_id DESC']
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->get());
 
@@ -38,6 +38,8 @@ class AnchorController extends BaseController {
         $pagecount = $res['data']['pagecount'];
         // 获取主播对应的普通用户信息
         $renderArgs['anchor'] = $res['data']['list'];
+        $renderArgs['anchorTotal'] = $res['data']['total'];
+        $renderArgs['anchorPageCount'] = $res['data']['pagecount'];
         // 生成翻页HTML
         $pageUrl = '/anchor/index/?page=$page';
         $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $pagecount);
@@ -167,6 +169,20 @@ class AnchorController extends BaseController {
                 ];
                 $args = $this->getRequestData($rule, Yii::$app->request->post());
                 $res = Yii::$app->api->post('news/del-news-comment', $args);
+                if ($res['code'] == 200) {
+                    $json = ['status' => 'success', 'message' => $res['message']];
+                } else {
+                    $json = ['status' => 'fail', 'message' => $res['message']];
+                }
+                exit(Json::encode($json));
+                break;
+            // 删除动态评论
+            case 'delAnchor':
+                $rule = [
+                    'anchor_id'   => ['type' => 'int', 'required' => true],
+                ];
+                $args = $this->getRequestData($rule, Yii::$app->request->post());
+                $res = Yii::$app->api->post('anchor/del-anchor', $args);
                 if ($res['code'] == 200) {
                     $json = ['status' => 'success', 'message' => $res['message']];
                 } else {

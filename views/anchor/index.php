@@ -10,6 +10,27 @@
             <a href="/anchor/index/">主播管理</a>
         </li>
     </ul>
+    <!-- 筛选条件开始-->
+    <div class="portlet box green">
+        <div class="portlet-title">
+            <div class="caption">按昵称查找</div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse"></a>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <div class="row-fluid">
+                <div class="span3">
+                    <div class="control-group">
+                        <input type="text" placeholder="输入用户昵称" class="m-wrap span8 args" id="search_name" value="" />
+                        <span>
+                            <button class="btn green button-search" ><i class="icon-search"></i> 查找</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="tabbable tabbable-custom tabbable-custom-profile">
         <table class="table table-striped table-bordered table-hover dataTable">
             <thead>
@@ -30,6 +51,9 @@
             </thead>
             <?php if(!empty($anchor)):?>
                 <tbody>
+                <tr>
+                    <td colspan="10">主播总数：<?=$anchorTotal?>，总页数<?=$anchorPageCount?></td>
+                </tr>
                 <?php foreach($anchor as $item):?>
                     <tr>
                         <td>
@@ -78,7 +102,8 @@
 								<i class="icon-angle-down"></i>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="/anchor/news/?anchor_id=<?php echo $item['anchor_id']?>"><i class="icon-bullhorn"></i> 主播动态</a></li>
+                                    <li><a href="/anchor/news/?anchor_id=<?php echo $item['anchor_id']?>"><i class="icon-bullhorn"></i> 主播动态</a></li>
+                                    <li><a href="javascript:;" class="delAnchor" data-anchor_id="<?php echo $item['anchor_id']?>"><i class="icon-remove"></i> 撤销主播资格</a></li>
 								</ul>
 							</div>
                         </td>

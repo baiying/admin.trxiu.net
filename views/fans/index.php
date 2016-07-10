@@ -10,6 +10,27 @@
             <a href="/fans/index/">会员管理</a>
         </li>
     </ul>
+    <!-- 筛选条件开始-->
+    <div class="portlet box green">
+        <div class="portlet-title">
+            <div class="caption">按昵称查找</div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse"></a>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <div class="row-fluid">
+                <div class="span3">
+                    <div class="control-group">
+                        <input type="text" placeholder="输入用户昵称" class="m-wrap span8 args" id="search_name" value="" />
+                        <span>
+                            <button class="btn green button-search" ><i class="icon-search"></i> 查找</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="tabbable tabbable-custom tabbable-custom-profile">
         <table class="table table-striped table-bordered table-hover dataTable">
             <thead>
@@ -29,6 +50,9 @@
             </thead>
             <?php if(!empty($fansList)):?>
                 <tbody>
+                <tr>
+                    <td colspan="10">用户总数：<?=$fansTotal?>，总页数<?=$fansPageCount?></td>
+                </tr>
                 <?php foreach($fansList as $item):?>
                     <tr>
                         <td>

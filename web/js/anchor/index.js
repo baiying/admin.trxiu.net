@@ -1,5 +1,5 @@
 /**
- * 编辑管理员信息
+ * 编辑主播信息
  */
 $(".button-edit").click(function() {
     clearForm();
@@ -19,6 +19,40 @@ $(".button-edit").click(function() {
     $(".backimage").show();
     $(".qrcode").attr("src", $(this).attr("data-qrcode"));
     $(".qrcode").show();
+});
+/**
+ * 撤销主播权限
+ */
+$(".delAnchor").click(function () {
+    console.log($(this).attr('data-anchor_id'));
+    var anchor_id = $(this).attr('data-anchor_id');
+    if(!confirm("确定要撤销该主播资格？该操作会影响主播在活动中的得票数!")) {
+        return false;
+    }
+
+    $.ajax({
+        url: "/anchor/ajax/?act=delAnchor",
+        type: 'post',
+        dataType: 'json',
+        data: {
+            anchor_id:anchor_id
+        },
+        success: function(json) {
+            if(json.status = 'success') {
+                location.reload(true);
+                return true;
+            } else {
+                alert(json.message);
+                return false;
+            }
+        }
+    });
+});
+/**
+ * 查找用户
+ */
+$(".button-search").click(function () {
+    window.location.href="/anchor/index/?name="+$('#search_name').val();
 });
 /**
  * 浮层提交按钮点击事件

@@ -1,7 +1,13 @@
+
+/**
+ * 查找用户
+ */
+$(".button-search").click(function () {
+    window.location.href="/fans/index/?name="+$('#search_name').val();
+});
 /**
  * 账号管理页面JS脚本
  */
-
 $(".button-status").click(function() {
     var status = $(this).attr('data-status');
     var ballot_id = $(this).attr('data-ballot_id');
