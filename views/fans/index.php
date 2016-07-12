@@ -44,6 +44,7 @@
                 <th width="50">主播</th>
                 <th>省份</th>
                 <th>城市</th>
+                <th width="90">最后登录时间</th>
                 <th width="90">注册时间</th>
                 <th width="100">操作</th>
             </tr>
@@ -76,6 +77,7 @@
                         <td><?php echo $item['anchor_id'] > 0 ? '是' : '否';?></td>
                         <td><?php echo $item['wx_province'];?></td>
                         <td><?php echo $item['wx_city'];?></td>
+                        <td><?php echo date("Y-m-d", $item['last_time'])?></td>
                         <td><?php echo date("Y-m-d", $item['create_time'])?></td>
                         <td>
                         <?php if($item['anchor_id'] == 0):?>
