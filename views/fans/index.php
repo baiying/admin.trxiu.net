@@ -10,6 +10,27 @@
             <a href="/fans/index/">会员管理</a>
         </li>
     </ul>
+    <!-- 筛选条件开始-->
+    <div class="portlet box green">
+        <div class="portlet-title">
+            <div class="caption">按昵称查找</div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse"></a>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <div class="row-fluid">
+                <div class="span3">
+                    <div class="control-group">
+                        <input type="text" placeholder="输入用户昵称" class="m-wrap span8 args" id="search_name" value="" />
+                        <span>
+                            <button class="btn green button-search" ><i class="icon-search"></i> 查找</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="tabbable tabbable-custom tabbable-custom-profile">
         <table class="table table-striped table-bordered table-hover dataTable">
             <thead>
@@ -23,12 +44,16 @@
                 <th width="50">主播</th>
                 <th>省份</th>
                 <th>城市</th>
+                <th width="90">最后登录时间</th>
                 <th width="90">注册时间</th>
                 <th width="100">操作</th>
             </tr>
             </thead>
             <?php if(!empty($fansList)):?>
                 <tbody>
+                <tr>
+                    <td colspan="10">用户总数：<?=$fansTotal?>，总页数<?=$fansPageCount?></td>
+                </tr>
                 <?php foreach($fansList as $item):?>
                     <tr>
                         <td>
@@ -52,6 +77,7 @@
                         <td><?php echo $item['anchor_id'] > 0 ? '是' : '否';?></td>
                         <td><?php echo $item['wx_province'];?></td>
                         <td><?php echo $item['wx_city'];?></td>
+                        <td><?php echo date("Y-m-d", $item['last_time'])?></td>
                         <td><?php echo date("Y-m-d", $item['create_time'])?></td>
                         <td>
                         <?php if($item['anchor_id'] == 0):?>

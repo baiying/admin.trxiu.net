@@ -23,6 +23,7 @@ class FansController extends BaseController {
         $rule = [
             'page'=> ['type'=>'int', 'default'=>1],
             'size'=> ['type'=>'int', 'default'=>20],
+            'name'=> ['type'=>'string', 'required'=>false],
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->get());
 
@@ -34,6 +35,8 @@ class FansController extends BaseController {
         }
         // 将管理员列表数据放入renderArgs数组
         $renderArgs['fansList'] = $res['data']['list'];
+        $renderArgs['fansTotal'] = $res['data']['total'];
+        $renderArgs['fansPageCount'] = $res['data']['pagecount'];
         // 生成翻页HTML
         $pageUrl = '/fans/index/?page=$page';
         $renderArgs['pageBar'] = Yii::$app->utils->getPaging($pageUrl, $args['page'], $res['data']['pagecount']);

@@ -169,7 +169,7 @@
 
     </div>
     <div class="modal-footer">
-        <button type="button"  class="btn blue button-votes_amend" data-loading-text="提交中..." data-ballot_id="<?php echo $item['ballot_anchor_id']?>">确定</button>
+        <button type="button"  class="btn blue button-votes_amend" data-loading-text="提交中..." data-ballot_id="<?php if(!empty($item['ballot_anchor_id'])){ echo $item['ballot_anchor_id'];}?>">确定</button>
         <button type="button" data-dismiss="modal" class="btn">取消</button>
         <input type="hidden" id="ballot_anchor_id" value="" />
     </div>
