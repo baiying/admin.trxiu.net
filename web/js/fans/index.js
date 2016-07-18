@@ -109,6 +109,7 @@ $(function() {
         chunk_size: '4mb',
         multi_selection: true,
         uptoken_url: '/qiniu/ajax/?act=token',
+//        uptoken: $("#uptoken").val(),
         domain: 'http://o8syigvwe.bkt.clouddn.com/',
         get_new_uptoken: false,
         unique_names: true,
